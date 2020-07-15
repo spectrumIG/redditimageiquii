@@ -17,7 +17,7 @@ object Versions {
     const val RETROFIT = "2.9.0"
     const val RETROFIT_SERIAL_ADAPTER = "0.5.0"
     const val OKHTTP = "4.8.0"
-    const val COIL = "4.8.0"
+    const val COIL = "0.11.0"
     const val LIVEDATAKTX = "2.2.0"
     const val VIEWMODELKTX = "2.2.0"
     const val NAVIGATION = "2.3.0"
