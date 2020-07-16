@@ -27,6 +27,7 @@ buildscript {
     }
     dependencies{
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.28-alpha")
+//        classpath("com.android.tools.build:gradle:4.0.1")
     }
 }
 subprojects {

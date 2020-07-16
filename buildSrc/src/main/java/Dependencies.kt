@@ -21,10 +21,12 @@ object Versions {
     const val LIVEDATAKTX = "2.2.0"
     const val VIEWMODELKTX = "2.2.0"
     const val NAVIGATION = "2.3.0"
+    const val ROOM = "2.2.5"
+    const val TIMBER = "4.7.1"
 }
 
 object BuildPluginsVersion {
-    const val AGP = "4.0.0"
+    const val AGP = "4.0.1"
     const val DETEKT = "1.9.1"
     const val KOTLIN = "1.3.72"
     const val KTLINT = "9.2.1"
@@ -39,6 +41,7 @@ object CoreLibs {
     const val ANDROIDX_NAV_RUNTIME_KTX = "androidx.navigation:navigation-runtime-ktx:${Versions.NAVIGATION}"
     const val ANDROIDX_NAV_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
     const val ANDROIDX_NAV_UI_KTX = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
+    const val TIMBER_LIB ="com.jakewharton.timber:timber:${Versions.TIMBER}"
 }
 
 object JetPackKTX {
@@ -51,12 +54,12 @@ object Navigation {
     const val NAVIGATION_COMP = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
     const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
     const val NAVIGATION_DYNAMIC_FEATURE = "androidx.navigation:navigation-dynamic-features-fragment:${Versions.NAVIGATION}"
-    const val NAVIGATION_TEST= "androidx.navigation:navigation-testing:${Versions.NAVIGATION}"
+
 }
 
 object DILibs {
     const val HILT_DI = "com.google.dagger:hilt-android:${Versions.HILT}"
-    const val HILT_DI_COMPILER = "com.google.dagger:hilt-android-compiler${Versions.HILT}"
+    const val HILT_DI_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
 }
 
 object NetLibs {
@@ -69,14 +72,21 @@ object CoilImageLib {
     const val COIL = "io.coil-kt:coil:${Versions.COIL}"
 }
 
+object RoomLib {
+    const val ROOM = "androidx.room:room-runtime:${Versions.ROOM}"
+    const val ROOM_COMPILER = "androidx.room:room-compiler:${Versions.ROOM}"
+    const val ROOM_KTX = "androidx.room:room-ktx:${Versions.ROOM}"
+}
 
 object TestingLib {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
+    const val ROOM_TESTING = "androidx.room:room-testing:${Versions.ROOM}"
 }
-
 object AndroidTestingLib {
+
     const val ANDROIDX_TEST_RULES = "androidx.test:rules:${Versions.ANDROIDX_TEST}"
     const val ANDROIDX_TEST_RUNNER = "androidx.test:runner:${Versions.ANDROIDX_TEST}"
     const val ANDROIDX_TEST_EXT_JUNIT = "androidx.test.ext:junit:${Versions.ANDROIDX_TEST_EXT}"
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
+    const val NAVIGATION_TEST = "androidx.navigation:navigation-testing:${Versions.NAVIGATION}"
 }
