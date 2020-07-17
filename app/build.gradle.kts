@@ -4,6 +4,7 @@ plugins {
     id("kotlin-android-extensions")
     kotlin("kapt")
     id("kotlin-android")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -38,7 +39,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
-//        dataBinding = true
+        dataBinding = true
     }
 
     lintOptions {
@@ -59,10 +60,13 @@ dependencies {
     implementation(CoreLibs.ANDROIDX_NAV_FRAGMENT_KTX)
     implementation(CoreLibs.ANDROIDX_NAV_RUNTIME_KTX)
     implementation(CoreLibs.ANDROIDX_NAV_UI_KTX)
+
     implementation(DILibs.HILT_DI)
+    implementation(DILibs.HILT_VIEWMODEL)
 
     implementation(NetLibs.OKHTTP)
     implementation(NetLibs.RETROFIT)
+    implementation(NetLibs.OKHTTP_LOGGIN_INTERCEPTOR)
     implementation(NetLibs.SERIALIZATION_ADAPTER)
 
     implementation(JetPackKTX.LIVEDATA)
@@ -80,13 +84,13 @@ dependencies {
 //    implementation(RoomLib.ROOM_KTX)
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 
     kapt(DILibs.HILT_DI_COMPILER)
+    kapt(DILibs.HILT_DI_COMPILER_KAPT)
 //    kapt(RoomLib.ROOM_COMPILER)
 
     testImplementation(TestingLib.JUNIT)
-    testImplementation(TestingLib.ROOM_TESTING)
+//    testImplementation(TestingLib.ROOM_TESTING)
 
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)

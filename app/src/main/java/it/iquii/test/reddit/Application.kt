@@ -1,3 +1,5 @@
+package it.iquii.test.reddit
+
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 import it.iquii.test.reddit.library.android.BuildConfig

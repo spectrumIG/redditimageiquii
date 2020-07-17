@@ -14,6 +14,7 @@ object Versions {
     const val JUNIT = "4.13"
     const val KTLINT = "0.37.2"
     const val HILT = "2.28-alpha"
+    const val HILT_VIEWMODEL ="1.0.0-alpha01"
     const val RETROFIT = "2.9.0"
     const val RETROFIT_SERIAL_ADAPTER = "0.5.0"
     const val OKHTTP = "4.8.0"
@@ -59,12 +60,15 @@ object Navigation {
 
 object DILibs {
     const val HILT_DI = "com.google.dagger:hilt-android:${Versions.HILT}"
+    const val HILT_VIEWMODEL = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.HILT_VIEWMODEL}"
     const val HILT_DI_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
+    const val HILT_DI_COMPILER_KAPT = "androidx.hilt:hilt-compiler:${Versions.HILT_VIEWMODEL}"
 }
 
 object NetLibs {
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val OKHTTP = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
+    const val OKHTTP_LOGGIN_INTERCEPTOR ="com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
     const val SERIALIZATION_ADAPTER ="com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.RETROFIT_SERIAL_ADAPTER}"
 }
 
