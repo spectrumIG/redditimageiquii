@@ -60,6 +60,9 @@ dependencies {
     implementation(CoreLibs.ANDROIDX_NAV_FRAGMENT_KTX)
     implementation(CoreLibs.ANDROIDX_NAV_RUNTIME_KTX)
     implementation(CoreLibs.ANDROIDX_NAV_UI_KTX)
+    implementation(CoreLibs.MATERIAL_UI_LIB)
+    implementation(CoreLibs.RECYCLER_VIEW)
+    implementation(CoreLibs.RECYCLER_VIEW_SELECTION)
 
     implementation(DILibs.HILT_DI)
     implementation(DILibs.HILT_VIEWMODEL)

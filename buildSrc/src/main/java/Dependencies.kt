@@ -24,6 +24,9 @@ object Versions {
     const val NAVIGATION = "2.3.0"
     const val ROOM = "2.2.5"
     const val TIMBER = "4.7.1"
+    const val MATERIAL = "1.3.0-alpha01"
+    const val RECYCLER  = "1.1.0"
+    const val RECYCLER_SELECTION = "1.1.0-rc01"
 }
 
 object BuildPluginsVersion {
@@ -42,7 +45,10 @@ object CoreLibs {
     const val ANDROIDX_NAV_RUNTIME_KTX = "androidx.navigation:navigation-runtime-ktx:${Versions.NAVIGATION}"
     const val ANDROIDX_NAV_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
     const val ANDROIDX_NAV_UI_KTX = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
-    const val TIMBER_LIB ="com.jakewharton.timber:timber:${Versions.TIMBER}"
+    const val TIMBER_LIB = "com.jakewharton.timber:timber:${Versions.TIMBER}"
+    const val MATERIAL_UI_LIB = "com.google.android.material:material:${Versions.MATERIAL}"
+    const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.RECYCLER}"
+    const val RECYCLER_VIEW_SELECTION = "androidx.recyclerview:recyclerview-selection:${Versions.RECYCLER_SELECTION}"
 }
 
 object JetPackKTX {
