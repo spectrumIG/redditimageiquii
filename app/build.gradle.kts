@@ -34,6 +34,12 @@ android {
             )
         }
     }
+//    compileOptions {
+//        annotationProcessorsOptions {
+//            arguments += ["room.schemaLocation" : "$projectDir/schemas".toString()]
+//        }
+//    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -83,17 +89,18 @@ dependencies {
     implementation(CoreLibs.TIMBER_LIB)
     implementation(CoilImageLib.COIL)
 
-//    implementation(RoomLib.ROOM)
-//    implementation(RoomLib.ROOM_KTX)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation(RoomLib.ROOM)
+    implementation(RoomLib.ROOM_KTX)
+
+//    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+//    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     kapt(DILibs.HILT_DI_COMPILER)
     kapt(DILibs.HILT_DI_COMPILER_KAPT)
-//    kapt(RoomLib.ROOM_COMPILER)
+    kapt(RoomLib.ROOM_COMPILER)
 
     testImplementation(TestingLib.JUNIT)
-//    testImplementation(TestingLib.ROOM_TESTING)
+    testImplementation(TestingLib.ROOM_TESTING)
 
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
