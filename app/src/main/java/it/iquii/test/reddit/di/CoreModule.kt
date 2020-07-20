@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import it.iquii.test.reddit.BuildConfig
-import it.iquii.test.reddit.domain.network.RestApi
+import it.iquii.test.reddit.domain.repository.network.RestApi
 import kotlinx.serialization.UnstableDefault
 import kotlinx.serialization.UpdateMode
 import kotlinx.serialization.json.Json
