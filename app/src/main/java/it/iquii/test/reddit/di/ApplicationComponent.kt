@@ -7,7 +7,8 @@ import dagger.hilt.android.components.ApplicationComponent
 @InstallIn(ApplicationComponent::class)
 @Module(
     includes = [
-        CoreModule::class
+        CoreModule::class,
+        RepositoryModule::class
     ]
 )
 
