@@ -4,6 +4,12 @@ package it.iquii.test.reddit.domain.entity.remote
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Simple representation of returned JSON from API
+ * Due to lack of time I decide to not filter anything during serialization but instead delegate
+ * to mappers in repository the data filtering
+ * */
+
 @Serializable
 data class RedditImagesDTO(
     @SerialName("data")
