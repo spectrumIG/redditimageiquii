@@ -5,17 +5,17 @@ package it.iquii.test.reddit.library.android.entity
  * A generic class that holds  states of data with values and its loading status.
  * @param <T>
  */
-sealed class Result<out T : Any> {
-    data class Success<out T : Any>(val data: T) : Result<T>()
-    data class Error(val exception: HttpError) : Result<Nothing>()
+sealed class NetworkResult<out T : Any> {
+    data class Success<out T : Any>(val data: T) : NetworkResult<T>()
+    data class Error(val exception: HttpError) : NetworkResult<Nothing>()
 
 
-    inline fun onSuccess(action: (T) -> Unit): Result<T> {
+    inline fun onSuccess(action: (T) -> Unit): NetworkResult<T> {
         if (this is Success) action(data)
         return this
     }
 
-    inline fun onFailure(action: (HttpError) -> Unit) {
+    inline fun onFailure(action: (HttpError) -> Error) {
         if(this is Error) action(exception)
     }
 
