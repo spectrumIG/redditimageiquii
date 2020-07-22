@@ -5,14 +5,25 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import it.iquii.test.reddit.domain.repository.DataStore
+import it.iquii.test.reddit.domain.repository.Repository
+import it.iquii.test.reddit.domain.repository.RepositoryImpl
 import it.iquii.test.reddit.domain.repository.network.RemoteStore
 import it.iquii.test.reddit.domain.repository.network.RestApi
 import javax.inject.Qualifier
+import javax.inject.Singleton
 
 
 @InstallIn(ApplicationComponent::class)
 @Module
 object RepositoryModule {
+
+
+    @Provides
+    @Singleton
+    fun provideRepository(@RemoteDataStore remoteStore: RemoteStore) : Repository{
+        return RepositoryImpl(remoteStore)
+    }
+
 
     @Provides
     @LocalDataStore
