@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import it.iquii.test.reddit.R
@@ -20,9 +21,14 @@ class PhotoGridFragment : Fragment(R.layout.photo_grid_fragment) {
         fragmentBindings = PhotoGridFragmentBinding.bind(view)
         val grid = fragmentBindings!!.mainGridRecycler
         grid.apply {
-            layoutManager =GridLayoutManager(requireContext(),4)
-
+            layoutManager = GridLayoutManager(requireContext(), 4)
+            adapter = PhotosGridRecycler()
         }
+
+        viewModel.photos.observe(viewLifecycleOwner, Observer {
+
+        })
 
     }
 }
+

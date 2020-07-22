@@ -7,13 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".photogrid.PhotoGridFragment"
     >
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_grid_recycler"
+    <FrameLayout
+        android:id="@+id/search_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/main_grid_recycler"
+
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/search_text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/search_text"
+                android:hint="hint"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+    </FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_grid_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_container"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
