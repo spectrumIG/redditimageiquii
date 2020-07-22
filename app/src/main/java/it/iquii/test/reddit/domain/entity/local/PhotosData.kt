@@ -1,7 +1,6 @@
 package it.iquii.test.reddit.domain.entity.local
 
 import it.iquii.test.reddit.domain.entity.remote.RedditImagesDTO
-import it.iquii.test.reddit.library.android.entity.DataModel
 import it.iquii.test.reddit.library.android.entity.Mapper
 
 interface PhotosData
