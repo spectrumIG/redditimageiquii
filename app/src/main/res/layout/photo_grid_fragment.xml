@@ -7,9 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".photogrid.PhotoGridFragment"
     >
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/search_container"
         android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +21,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/search_text_input"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="0.4"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -31,7 +33,16 @@
                 android:hint="hint"
                 />
         </com.google.android.material.textfield.TextInputLayout>
-    </FrameLayout>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="0.1
+"
+            android:text="Button"
+            />
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_grid_recycler"
         android:layout_width="match_parent"
@@ -40,5 +51,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_container"
+        />
+
+    <TextView
+        android:id="@+id/no_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="Nessun immagine trovata"
+        android:textSize="30sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/main_grid_recycler"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.Material.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
