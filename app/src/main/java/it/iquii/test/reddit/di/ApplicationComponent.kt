@@ -8,6 +8,7 @@ import dagger.hilt.android.components.ApplicationComponent
 @Module(
     includes = [
         CoreModule::class,
+        DomainModule::class,
         RepositoryModule::class
     ]
 )
