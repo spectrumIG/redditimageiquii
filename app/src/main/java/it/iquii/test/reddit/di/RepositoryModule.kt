@@ -20,8 +20,8 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRepository(@RemoteDataStore remoteStore: RemoteStore) : Repository{
-        return RepositoryImpl(remoteStore)
+    fun provideRepository(@RemoteDataStore remoteStore: DataStore) : Repository{
+        return RepositoryImpl(remoteStore as RemoteStore)
     }
 
 
@@ -42,9 +42,9 @@ object RepositoryModule {
 }
 
 @Qualifier
-@Retention(AnnotationRetention.BINARY)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class LocalDataStore
 
 @Qualifier
-@Retention(AnnotationRetention.BINARY)
+@Retention(AnnotationRetention.RUNTIME)
 annotation class RemoteDataStore

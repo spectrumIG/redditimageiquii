@@ -9,6 +9,6 @@ import retrofit2.http.Path
 interface RestApi {
 
     @GET("/r/{keyword}/top.json")
-    suspend fun getImagesFor(@Path("keyword") keyword:String) : Response<RedditImagesDTO>
+     suspend fun getImagesFor(@Path("keyword") keyword:String) : Response<RedditImagesDTO>
 
 }

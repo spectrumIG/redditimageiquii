@@ -1,6 +1,6 @@
 package it.iquii.test.reddit.domain.entity.local
 
-import it.iquii.test.reddit.domain.entity.remote.RedditImagesDTO
+import it.iquii.test.reddit.domain.entity.remote.InnerData
 import it.iquii.test.reddit.library.android.entity.Mapper
 
 interface PhotosData
@@ -20,8 +20,8 @@ data class ImagesForUi(val id: String?,val url: String,val title: String,val aut
 /**
  * Mapper for Layer boundaries
  * */
-class FromDtoToSimpleImagesMapper :  Mapper<RedditImagesDTO.ExternalData.Children.InnerData, SimpleImages> {
-    override fun mapFrom(from: RedditImagesDTO.ExternalData.Children.InnerData): SimpleImages {
+class FromDtoToSimpleImagesMapper :  Mapper<InnerData, SimpleImages> {
+    override fun mapFrom(from: InnerData): SimpleImages {
         return SimpleImages(from.id, from.url!!, from.title!!, from.author!!)
     }
 }
