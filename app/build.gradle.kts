@@ -5,6 +5,7 @@ plugins {
     kotlin("kapt")
     id("kotlin-android")
     id("dagger.hilt.android.plugin")
+    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
 }
 
 android {
@@ -77,6 +78,7 @@ dependencies {
     implementation(NetLibs.RETROFIT)
     implementation(NetLibs.OKHTTP_LOGGIN_INTERCEPTOR)
     implementation(NetLibs.SERIALIZATION_ADAPTER)
+    implementation(NetLibs.KOTLIN_SERIALIZATION)
 
     implementation(JetPackKTX.LIVEDATA)
     implementation(JetPackKTX.LIFECYCLESCOPE)
@@ -87,6 +89,7 @@ dependencies {
     implementation(Navigation.NAVIGATION_UI)
 
     implementation(CoreLibs.TIMBER_LIB)
+    implementation(CoreLibs.EAZY_PERMISSIONS)
     implementation(CoilImageLib.COIL)
 
     implementation(RoomLib.ROOM)

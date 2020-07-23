@@ -7,25 +7,51 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import it.iquii.test.reddit.BaseFragment
 import it.iquii.test.reddit.R
 import it.iquii.test.reddit.databinding.PhotoGridFragmentBinding
+import it.iquii.test.reddit.library.android.entity.Resource
 
 @AndroidEntryPoint
-class PhotoGridFragment : Fragment(R.layout.photo_grid_fragment) {
+class PhotoGridFragment : BaseFragment(R.layout.photo_grid_fragment) {
 
-    private var fragmentBindings : PhotoGridFragmentBinding? = null
-    private val viewModel : PhotoGridViewModel by viewModels()
+    private lateinit var fragmentBindings: PhotoGridFragmentBinding
+    private val viewModel: PhotoGridViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentBindings = PhotoGridFragmentBinding.bind(view)
-        val grid = fragmentBindings!!.mainGridRecycler
+
+        val grid = fragmentBindings.mainGridRecycler
+
+        val photosGridRecyclerAdapter = PhotosGridRecyclerAdapter()
         grid.apply {
             layoutManager = GridLayoutManager(requireContext(), 4)
-            adapter = PhotosGridRecycler()
+            adapter = photosGridRecyclerAdapter
         }
 
-        viewModel.photos.observe(viewLifecycleOwner, Observer {
+        fragmentBindings.button.setOnClickListener {
+            viewModel.fetcDataFor(fragmentBindings.searchText.text.toString())
+            fragmentBindings.progressBar.visibility = View.VISIBLE
+        }
+
+        viewModel.photos.observe(viewLifecycleOwner, Observer { resource ->
+            when (resource.status) {
+                Resource.Status.SUCCESS -> {
+
+                    photosGridRecyclerAdapter.setData(resource.data!!)
+                    fragmentBindings.mainGridRecycler.visibility = View.VISIBLE
+                    fragmentBindings.noItemText.visibility = View.INVISIBLE
+                    fragmentBindings.progressBar.visibility = View.GONE
+                }
+
+                Resource.Status.ERROR ->{
+                    fragmentBindings.mainGridRecycler.visibility = View.INVISIBLE
+                    fragmentBindings.noItemText.visibility = View.VISIBLE
+                }
+                    Resource.Status.LOADING -> { fragmentBindings.progressBar.visibility = View.VISIBLE}
+            }
+
 
         })
 

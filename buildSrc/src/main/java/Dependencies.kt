@@ -27,6 +27,8 @@ object Versions {
     const val MATERIAL = "1.3.0-alpha01"
     const val RECYCLER  = "1.1.0"
     const val RECYCLER_SELECTION = "1.1.0-rc01"
+    const val KOTLIN_SERIALIZATION_PLUGIN = "0.20.0"
+    const val PERMISSIONS_VER = "2.0.1"
 }
 
 object BuildPluginsVersion {
@@ -36,6 +38,7 @@ object BuildPluginsVersion {
     const val KTLINT = "9.2.1"
     const val VERSIONS_PLUGIN = "0.28.0"
     const val SERIALIZATION = "1.3.70"
+
 }
 
 object CoreLibs {
@@ -45,10 +48,12 @@ object CoreLibs {
     const val ANDROIDX_NAV_RUNTIME_KTX = "androidx.navigation:navigation-runtime-ktx:${Versions.NAVIGATION}"
     const val ANDROIDX_NAV_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
     const val ANDROIDX_NAV_UI_KTX = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
+
     const val TIMBER_LIB = "com.jakewharton.timber:timber:${Versions.TIMBER}"
     const val MATERIAL_UI_LIB = "com.google.android.material:material:${Versions.MATERIAL}"
     const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.RECYCLER}"
     const val RECYCLER_VIEW_SELECTION = "androidx.recyclerview:recyclerview-selection:${Versions.RECYCLER_SELECTION}"
+    const val EAZY_PERMISSIONS = "com.sagar:dslpermission:${Versions.PERMISSIONS_VER}"
 }
 
 object JetPackKTX {
@@ -75,6 +80,7 @@ object NetLibs {
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val OKHTTP = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
     const val OKHTTP_LOGGIN_INTERCEPTOR ="com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
+    const val KOTLIN_SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.KOTLIN_SERIALIZATION_PLUGIN}"
     const val SERIALIZATION_ADAPTER ="com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.RETROFIT_SERIAL_ADAPTER}"
 }
 
