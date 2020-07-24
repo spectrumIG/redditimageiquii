@@ -2,8 +2,10 @@ package it.iquii.test.reddit.photogrid
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import coil.size.Scale
 import it.iquii.test.reddit.R
 import it.iquii.test.reddit.databinding.PhotosItemBinding
 import it.iquii.test.reddit.domain.entity.local.ImagesForUi
@@ -29,16 +31,15 @@ class PhotosGridRecyclerAdapter : RecyclerView.Adapter<PhotosGridRecyclerAdapter
     class GridViewHolder(private val binding: PhotosItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ImagesForUi) = with(itemView) {
 
-            binding.authoreName.text = item.author
             binding.photoImg.load(item.url){
+                scale(Scale.FILL)
                 crossfade(true)
+                error(R.drawable.ic_download_error)
                 placeholder(R.drawable.ic_android_black_24dp)
             }
 
-            binding.description.text = item.title
-
             setOnClickListener {
-                // TODO: Handle on click
+//                findNavController().navigate()
             }
         }
     }

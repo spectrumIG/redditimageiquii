@@ -94,7 +94,10 @@ dependencies {
 
     implementation(RoomLib.ROOM)
     implementation(RoomLib.ROOM_KTX)
-
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation(PhotoView.PHOTO_VIEW)
 //    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 //    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 

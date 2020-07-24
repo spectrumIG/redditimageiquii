@@ -48,8 +48,8 @@ object CoreModule {
             JsonConfiguration(
                 encodeDefaults = false,
                 ignoreUnknownKeys = true,
-                isLenient = false,
-                serializeSpecialFloatingPointValues = false,
+                isLenient = true,
+                serializeSpecialFloatingPointValues = true,
                 allowStructuredMapKeys = false,
                 prettyPrint = true,
                 unquotedPrint = false,

@@ -7,42 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".photogrid.PhotoGridFragment"
     >
-    <LinearLayout
-        android:id="@+id/search_container"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/main_grid_recycler"
-
-        >
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_text_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/search_text"
-                android:hint="hint"
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-        <Button
-            android:id="@+id/button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
-            android:layout_weight="0.1
-"
-            android:text="Button"
-            />
-    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_grid_recycler"
         android:layout_width="match_parent"
@@ -50,14 +14,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_container"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
     <TextView
         android:id="@+id/no_item_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:fontFamily="@font/roboto_slab_bold"
         android:text="Nessun immagine trovata"
         android:textSize="30sp"

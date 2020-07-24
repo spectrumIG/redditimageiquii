@@ -24,6 +24,7 @@ class PhotoGridViewModel @ViewModelInject constructor(
 
     fun fetcDataFor(keyword: String) {
         viewModelScope.launch {
+            _photos.postValue(Resource.loading())
             val retrievePhotosFor = usecase.retrievePhotosFor(keyword)
             _photos.postValue(retrievePhotosFor)
         }

@@ -1,5 +1,6 @@
 package it.iquii.test.reddit.photogrid
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -8,53 +9,75 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import it.iquii.test.reddit.BaseFragment
+import it.iquii.test.reddit.MainActivity
 import it.iquii.test.reddit.R
 import it.iquii.test.reddit.databinding.PhotoGridFragmentBinding
 import it.iquii.test.reddit.library.android.entity.Resource
 
-@AndroidEntryPoint
-class PhotoGridFragment : BaseFragment(R.layout.photo_grid_fragment) {
+interface OnFilterListener {
+    fun filterSent(keyword: String)
+}
 
-    private lateinit var fragmentBindings: PhotoGridFragmentBinding
+@AndroidEntryPoint
+//class PhotoGridFragment : BaseFragment(R.layout.photo_grid_fragment), OnFilterListener {
+class PhotoGridFragment : Fragment(R.layout.photo_grid_fragment), OnFilterListener {
+
+    private var fragmentBindings: PhotoGridFragmentBinding?  = null
     private val viewModel: PhotoGridViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         fragmentBindings = PhotoGridFragmentBinding.bind(view)
 
-        val grid = fragmentBindings.mainGridRecycler
+        (activity as  MainActivity).listener = this
+
+        val grid = fragmentBindings!!.mainGridRecycler
 
         val photosGridRecyclerAdapter = PhotosGridRecyclerAdapter()
+
         grid.apply {
             layoutManager = GridLayoutManager(requireContext(), 4)
             adapter = photosGridRecyclerAdapter
         }
-
-        fragmentBindings.button.setOnClickListener {
-            viewModel.fetcDataFor(fragmentBindings.searchText.text.toString())
-            fragmentBindings.progressBar.visibility = View.VISIBLE
-        }
-
         viewModel.photos.observe(viewLifecycleOwner, Observer { resource ->
             when (resource.status) {
                 Resource.Status.SUCCESS -> {
-
+                    enableGrid()
                     photosGridRecyclerAdapter.setData(resource.data!!)
-                    fragmentBindings.mainGridRecycler.visibility = View.VISIBLE
-                    fragmentBindings.noItemText.visibility = View.INVISIBLE
-                    fragmentBindings.progressBar.visibility = View.GONE
                 }
 
-                Resource.Status.ERROR ->{
-                    fragmentBindings.mainGridRecycler.visibility = View.INVISIBLE
-                    fragmentBindings.noItemText.visibility = View.VISIBLE
+                Resource.Status.ERROR -> {
+                    enableErrorMessage()
                 }
-                    Resource.Status.LOADING -> { fragmentBindings.progressBar.visibility = View.VISIBLE}
+                Resource.Status.LOADING -> {
+                    fragmentBindings!!.progressBar.visibility = View.VISIBLE
+                }
             }
 
-
         })
+    }
 
+    override fun filterSent(keyword: String) {
+        fragmentBindings!!.progressBar.visibility = View.VISIBLE
+        viewModel.fetcDataFor(keyword)
+    }
+
+    private fun enableErrorMessage() {
+        fragmentBindings!!.mainGridRecycler.visibility = View.INVISIBLE
+        fragmentBindings!!.noItemText.visibility = View.VISIBLE
+        fragmentBindings!!.progressBar.visibility = View.INVISIBLE
+    }
+
+    private fun enableGrid() {
+        fragmentBindings!!.mainGridRecycler.visibility = View.VISIBLE
+        fragmentBindings!!.noItemText.visibility = View.INVISIBLE
+        fragmentBindings!!.progressBar.visibility = View.INVISIBLE
+    }
+
+    override fun onDestroy() {
+        fragmentBindings = null
+        super.onDestroy()
     }
 }
 
