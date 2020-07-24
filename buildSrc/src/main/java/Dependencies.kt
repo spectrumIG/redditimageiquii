@@ -29,6 +29,7 @@ object Versions {
     const val RECYCLER_SELECTION = "1.1.0-rc01"
     const val KOTLIN_SERIALIZATION_PLUGIN = "0.20.0"
     const val PERMISSIONS_VER = "2.0.1"
+    const val PHOTO_VIEW_VER = "2.3.0"
 }
 
 object BuildPluginsVersion {
@@ -79,9 +80,13 @@ object DILibs {
 object NetLibs {
     const val RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT}"
     const val OKHTTP = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP}"
-    const val OKHTTP_LOGGIN_INTERCEPTOR ="com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
+    const val OKHTTP_LOGGIN_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.OKHTTP}"
     const val KOTLIN_SERIALIZATION = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.KOTLIN_SERIALIZATION_PLUGIN}"
-    const val SERIALIZATION_ADAPTER ="com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.RETROFIT_SERIAL_ADAPTER}"
+    const val SERIALIZATION_ADAPTER = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.RETROFIT_SERIAL_ADAPTER}"
+}
+
+object PhotoView {
+    const val PHOTO_VIEW = "com.github.chrisbanes:PhotoView:${Versions.PHOTO_VIEW_VER}"
 }
 
 object CoilImageLib {
