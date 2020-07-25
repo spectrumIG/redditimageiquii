@@ -41,30 +41,30 @@ data class Children(
 )
 @Serializable
 data class InnerData(
-    @SerialName("approved_at_utc")
-    val approvedAtUtc: String?,
-    @SerialName("approved_by")
-    val approvedBy: String?,
+//    @SerialName("approved_at_utc")
+//    val approvedAtUtc: String?,
+//    @SerialName("approved_by")
+//    val approvedBy: String?,
     @SerialName("author")
-    val author: String?,
-    @SerialName("author_flair_background_color")
-    val authorFlairBackgroundColor: String?,
-    @SerialName("author_flair_css_class")
-    val authorFlairCssClass: String?,
-    @SerialName("author_flair_richtext")
-    val authorFlairRichtext: List<String?>?,
-    @SerialName("author_flair_template_id")
-    val authorFlairTemplateId: String?,
-    @SerialName("author_flair_text")
-    val authorFlairText: String?,
-    @SerialName("author_flair_text_color")
-    val authorFlairTextColor: String?,
-    @SerialName("author_flair_type")
-    val authorFlairType: String?,
+    val author: String? = "",
+//    @SerialName("author_flair_background_color")
+//    val authorFlairBackgroundColor: String?,
+//    @SerialName("author_flair_css_class")
+//    val authorFlairCssClass: String?,
+//    @SerialName("author_flair_richtext")
+//    val authorFlairRichtext: List<String?>?,
+//    @SerialName("author_flair_template_id")
+//    val authorFlairTemplateId: String?,
+//    @SerialName("author_flair_text")
+//    val authorFlairText: String?,
+//    @SerialName("author_flair_text_color")
+//    val authorFlairTextColor: String?,
+//    @SerialName("author_flair_type")
+//    val authorFlairType: String?,
     @SerialName("author_fullname")
-    val authorFullname: String?,
-    @SerialName("author_patreon_flair")
-    val authorPatreonFlair: Boolean?,
+    val authorFullname: String? = "",
+//    @SerialName("author_patreon_flair")
+//    val authorPatreonFlair: Boolean?,
 //    @SerialName("author_premium")
 //    val authorPremium: Boolean?,
     @SerialName("awarders")
@@ -83,8 +83,8 @@ data class InnerData(
     val createdUtc: Double?,
     @SerialName("crosspost_parent")
     val crosspostParent: String? ="",
-    @SerialName("crosspost_parent_list")
-    val crosspostParentList: List<CrosspostParent?>? = null,
+//    @SerialName("crosspost_parent_list")
+//    val crosspostParentList: List<CrosspostParent?>? = null,
     @SerialName("discussion_type")
     val discussionType: String?,
     @SerialName("distinguished")
@@ -163,20 +163,20 @@ data class CrosspostParent(
     val archived: Boolean?,
     @SerialName("author")
     val author: String?,
-    @SerialName("author_flair_background_color")
-    val authorFlairBackgroundColor: String?,
-    @SerialName("author_flair_css_class")
-    val authorFlairCssClass: String?,
-    @SerialName("author_flair_richtext")
-    val authorFlairRichtext: List<String?>?,
-    @SerialName("author_flair_template_id")
-    val authorFlairTemplateId: String?,
-    @SerialName("author_flair_text")
-    val authorFlairText: String?,
-    @SerialName("author_flair_text_color")
-    val authorFlairTextColor: String?,
-    @SerialName("author_flair_type")
-    val authorFlairType: String?,
+//    @SerialName("author_flair_background_color")
+//    val authorFlairBackgroundColor: String?,
+//    @SerialName("author_flair_css_class")
+//    val authorFlairCssClass: String?,
+//    @SerialName("author_flair_richtext")
+//    val authorFlairRichtext: List<String?>?,
+//    @SerialName("author_flair_template_id")
+//    val authorFlairTemplateId: String?,
+//    @SerialName("author_flair_text")
+//    val authorFlairText: String?,
+//    @SerialName("author_flair_text_color")
+//    val authorFlairTextColor: String?,
+//    @SerialName("author_flair_type")
+//    val authorFlairType: String?,
     @SerialName("author_fullname")
     val authorFullname: String?,
     @SerialName("author_patreon_flair")

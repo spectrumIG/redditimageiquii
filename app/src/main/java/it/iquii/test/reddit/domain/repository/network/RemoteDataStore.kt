@@ -4,6 +4,7 @@ import it.iquii.test.reddit.di.RemoteDataStore
 import it.iquii.test.reddit.domain.entity.local.SimpleImages
 import it.iquii.test.reddit.domain.repository.DataStore
 import it.iquii.test.reddit.library.android.entity.NetworkResult
+import it.iquii.test.reddit.library.android.entity.isValidUrl
 import javax.inject.Inject
 
 @RemoteDataStore
@@ -14,15 +15,24 @@ class RemoteStore @Inject constructor(private val restApi: RestApi): DataStore {
         if(response.isSuccessful) {
             return NetworkResult.Success(
                 response.body()?.externalData?.children?.flatMap { children ->
-
                     val simpleImagesList = mutableListOf<SimpleImages>()
 
-                    simpleImagesList.add(
-                        SimpleImages(
-                            id = children?.innerData?.id, url = children?.innerData?.url!!, title = children.innerData.title!!,
-                            author = children.innerData.author!!
+                    if(children?.innerData?.url!!.isValidUrl()) {
+                        simpleImagesList.add(
+                            SimpleImages(
+                                id = children.innerData.id, url  = children.innerData.url, title =
+                                children.innerData.title!!,author = children.innerData.author!!
+                            )
                         )
-                    )
+                    }else if(children.innerData.thumbnail!!.isValidUrl()){
+                        simpleImagesList.add(
+                            SimpleImages(
+                                id = children.innerData.id, url  = children.innerData.thumbnail, title =
+                                children.innerData.title!!,author = children.innerData.author!!
+                            )
+                        )
+
+                    }
                     simpleImagesList
                 }!!
             )
