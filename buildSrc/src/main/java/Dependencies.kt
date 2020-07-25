@@ -30,6 +30,7 @@ object Versions {
     const val KOTLIN_SERIALIZATION_PLUGIN = "0.20.0"
     const val PERMISSIONS_VER = "2.0.1"
     const val PHOTO_VIEW_VER = "2.3.0"
+    const val NAV_ARGS = "2.3.0"
 }
 
 object BuildPluginsVersion {
