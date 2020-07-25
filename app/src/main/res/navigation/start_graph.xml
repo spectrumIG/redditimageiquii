@@ -9,5 +9,21 @@
         android:id="@+id/photoGridFragment"
         android:name="it.iquii.test.reddit.photogrid.PhotoGridFragment"
         android:label="photo_grid_fragment"
-        tools:layout="@layout/photo_grid_fragment" />
+        tools:layout="@layout/photo_grid_fragment" >
+        <action
+            android:id="@+id/toDetailSwipeFragment"
+            app:destination="@id/detailSwipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailSwipeFragment"
+        android:name="it.iquii.test.reddit.detail.DetailSwipeFragment"
+        android:label="detail_swipe_fragment"
+        tools:layout="@layout/detail_swipe_fragment" >
+        <argument
+            android:name="index"
+            app:argType="integer" />
+        <argument
+            android:name="photosArray"
+            app:argType="it.iquii.test.reddit.library.android.entity.PhotosMetaDataHolder[]" />
+    </fragment>
 </navigation>
