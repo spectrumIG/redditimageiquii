@@ -8,7 +8,6 @@ import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import coil.api.load
 import dagger.hilt.android.AndroidEntryPoint
-import it.iquii.test.reddit.R
 import it.iquii.test.reddit.databinding.FragmentPhotoBinding
 
 @AndroidEntryPoint

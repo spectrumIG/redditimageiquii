@@ -1,6 +1,5 @@
 package it.iquii.test.reddit.photogrid
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -8,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import it.iquii.test.reddit.BaseFragment
 import it.iquii.test.reddit.MainActivity
 import it.iquii.test.reddit.R
 import it.iquii.test.reddit.databinding.PhotoGridFragmentBinding
@@ -44,7 +42,11 @@ class PhotoGridFragment : Fragment(R.layout.photo_grid_fragment), OnFilterListen
             when (resource.status) {
                 Resource.Status.SUCCESS -> {
                     enableGrid()
-                    photosGridRecyclerAdapter.setData(resource.data!!)
+                    if(resource.data!!.isEmpty()) {
+                        enableErrorMessage()
+                    } else {
+                        photosGridRecyclerAdapter.setData(resource.data!!)
+                    }
                 }
 
                 Resource.Status.ERROR -> {
@@ -75,9 +77,9 @@ class PhotoGridFragment : Fragment(R.layout.photo_grid_fragment), OnFilterListen
         fragmentBindings!!.progressBar.visibility = View.INVISIBLE
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         fragmentBindings = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 }
 
