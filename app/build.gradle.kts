@@ -6,6 +6,7 @@ plugins {
     id("kotlin-android")
     id("dagger.hilt.android.plugin")
     kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {

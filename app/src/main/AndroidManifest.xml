@@ -4,7 +4,7 @@
     package="it.iquii.test.reddit">
 <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:name=".IquiiTestApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"> <!-- Unfortunately I have not time to deal with landscape and Configuration changes -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
