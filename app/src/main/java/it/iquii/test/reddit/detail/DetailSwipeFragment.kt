@@ -10,7 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import it.iquii.test.reddit.R
 import it.iquii.test.reddit.databinding.DetailSwipeFragmentBinding
 import it.iquii.test.reddit.library.android.entity.PhotosMetaDataHolder
-import org.jetbrains.annotations.NotNull
 
 @AndroidEntryPoint
 class DetailSwipeFragment : Fragment(R.layout.detail_swipe_fragment) {
@@ -30,6 +29,7 @@ class DetailSwipeFragment : Fragment(R.layout.detail_swipe_fragment) {
             this.currentItemIndex = args.index
         }
         viewPager.adapter = viewAdapter
+        viewPager.currentItem = args.index
 
     }
 
@@ -49,7 +49,7 @@ class PhotoAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
         val fragment = PhotoFragment()
         fragment.arguments = Bundle().apply {
-            putString("photoUrl",itemUrl[currentItemIndex].url)
+            putString("photoUrl", itemUrl[position].url)
         }
         return fragment
     }
