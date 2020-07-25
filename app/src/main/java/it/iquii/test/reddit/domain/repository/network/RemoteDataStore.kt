@@ -12,32 +12,32 @@ class RemoteStore @Inject constructor(private val restApi: RestApi): DataStore {
 
     suspend fun retrieveImageFor(keyword: String): NetworkResult<List<SimpleImages>> {
         val response = restApi.getImagesFor(keyword)
-        if(response.isSuccessful) {
-            return NetworkResult.Success(
-                response.body()?.externalData?.children?.flatMap { children ->
-                    val simpleImagesList = mutableListOf<SimpleImages>()
+        return when {
+            response.isSuccessful -> {
+                val simpleImagesList = mutableListOf<SimpleImages>()
 
+                response.body()?.externalData?.children?.forEach { children ->
                     if(children?.innerData?.url!!.isValidUrl()) {
                         simpleImagesList.add(
                             SimpleImages(
-                                id = children.innerData.id, url  = children.innerData.url, title =
-                                children.innerData.title!!,author = children.innerData.author!!
+                                id = children.innerData.id, url = children.innerData.url, title =
+                                children.innerData.title!!, author = children.innerData.author!!
                             )
                         )
-                    }else if(children.innerData.thumbnail!!.isValidUrl()){
+                    } else if(children.innerData.thumbnail!!.isValidUrl()) {
                         simpleImagesList.add(
                             SimpleImages(
-                                id = children.innerData.id, url  = children.innerData.thumbnail, title =
-                                children.innerData.title!!,author = children.innerData.author!!
+                                id = children.innerData.id, url = children.innerData.thumbnail, title =
+                                children.innerData.title!!, author = children.innerData.author!!
                             )
                         )
-
                     }
-                    simpleImagesList
                 }!!
-            )
-        } else {
-            return NetworkResult.Error(NetworkResult.HttpError(Exception(response.message()), response.code()))
+                NetworkResult.Success(simpleImagesList)
+            }
+            else -> {
+                return NetworkResult.Error(NetworkResult.HttpError(Exception(response.message()), response.code()))
+            }
         }
 
     }
