@@ -2,11 +2,11 @@ package it.iquii.test.reddit.photogrid
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import it.iquii.test.reddit.BaseFragment
 import it.iquii.test.reddit.MainActivity
 import it.iquii.test.reddit.R
 import it.iquii.test.reddit.databinding.PhotoGridFragmentBinding
@@ -17,10 +17,9 @@ interface OnFilterListener {
 }
 
 @AndroidEntryPoint
-//class PhotoGridFragment : BaseFragment(R.layout.photo_grid_fragment), OnFilterListener {
-class PhotoGridFragment : Fragment(R.layout.photo_grid_fragment), OnFilterListener {
+class PhotoGridFragment : BaseFragment(R.layout.photo_grid_fragment), OnFilterListener {
 
-    private var fragmentBindings: PhotoGridFragmentBinding?  = null
+    var fragmentBindings: PhotoGridFragmentBinding? = null
     private val viewModel: PhotoGridViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,7 +27,7 @@ class PhotoGridFragment : Fragment(R.layout.photo_grid_fragment), OnFilterListen
 
         fragmentBindings = PhotoGridFragmentBinding.bind(view)
 
-        (activity as  MainActivity).listener = this
+        (activity as MainActivity).listener = this
 
         val grid = fragmentBindings!!.mainGridRecycler
 
@@ -61,20 +60,21 @@ class PhotoGridFragment : Fragment(R.layout.photo_grid_fragment), OnFilterListen
     }
 
     override fun filterSent(keyword: String) {
-        fragmentBindings!!.progressBar.visibility = View.VISIBLE
+//        fragmentBindings!!.progressBar.visibility = View.VISIBLE
+
         viewModel.fetcDataFor(keyword)
     }
 
     private fun enableErrorMessage() {
-        fragmentBindings!!.mainGridRecycler.visibility = View.INVISIBLE
+        fragmentBindings!!.mainGridRecycler.visibility = View.GONE
         fragmentBindings!!.noItemText.visibility = View.VISIBLE
-        fragmentBindings!!.progressBar.visibility = View.INVISIBLE
+        fragmentBindings!!.progressBar.visibility = View.GONE
     }
 
     private fun enableGrid() {
         fragmentBindings!!.mainGridRecycler.visibility = View.VISIBLE
-        fragmentBindings!!.noItemText.visibility = View.INVISIBLE
-        fragmentBindings!!.progressBar.visibility = View.INVISIBLE
+        fragmentBindings!!.noItemText.visibility = View.GONE
+        fragmentBindings!!.progressBar.visibility = View.GONE
     }
 
     override fun onDestroyView() {

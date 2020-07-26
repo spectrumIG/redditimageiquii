@@ -7,22 +7,28 @@ import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
+import it.iquii.test.reddit.BaseFragment
+import it.iquii.test.reddit.MainActivity
 import it.iquii.test.reddit.R
 import it.iquii.test.reddit.databinding.DetailSwipeFragmentBinding
 import it.iquii.test.reddit.library.android.entity.PhotosMetaDataHolder
 
 @AndroidEntryPoint
-class DetailSwipeFragment : Fragment(R.layout.detail_swipe_fragment) {
+class DetailSwipeFragment : BaseFragment(R.layout.detail_swipe_fragment) {
 
     val args: DetailSwipeFragmentArgs by navArgs()
+
+
     private lateinit var viewPager: ViewPager2
     private lateinit var viewAdapter: PhotoAdapter
-    private var fragmentBindings:  DetailSwipeFragmentBinding? = null
+    private var fragmentBindings: DetailSwipeFragmentBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
+
         fragmentBindings = DetailSwipeFragmentBinding.bind(view)
+        (activity as MainActivity).binding.appBar.visibility = View.GONE
+
         viewPager = fragmentBindings!!.viewpagerPhotos
         viewAdapter = PhotoAdapter(this).apply {
             this.itemUrl = args.photosArray.toList()
@@ -31,6 +37,11 @@ class DetailSwipeFragment : Fragment(R.layout.detail_swipe_fragment) {
         viewPager.adapter = viewAdapter
         viewPager.currentItem = args.index
 
+    }
+
+    override fun onPause() {
+        (activity as MainActivity).binding.appBar.visibility = View.VISIBLE
+        super.onPause()
     }
 
     override fun onDestroyView() {

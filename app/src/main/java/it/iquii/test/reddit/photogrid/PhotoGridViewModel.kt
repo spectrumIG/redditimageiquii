@@ -8,7 +8,9 @@ import androidx.lifecycle.viewModelScope
 import it.iquii.test.reddit.domain.entity.local.ImagesForUi
 import it.iquii.test.reddit.domain.usecase.PhotoListUsecase
 import it.iquii.test.reddit.library.android.entity.Resource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PhotoGridViewModel @ViewModelInject constructor(
     private val usecase: PhotoListUsecase
@@ -19,12 +21,10 @@ class PhotoGridViewModel @ViewModelInject constructor(
     val photos: LiveData<Resource<List<ImagesForUi>>>
         get() = _photos
 
-
-
     fun fetcDataFor(keyword: String) {
         viewModelScope.launch {
             _photos.postValue(Resource.loading())
-            val retrievePhotosFor = usecase.retrievePhotosFor(keyword)
+            val retrievePhotosFor = withContext(Dispatchers.IO) { usecase.retrievePhotosFor(keyword) }
             _photos.postValue(retrievePhotosFor)
         }
     }
