@@ -8,7 +8,6 @@ package it.iquii.test.reddit.library.android.entity
 sealed class NetworkResult<out T : Any> {
     data class Success<out T : Any>(val data: T) : NetworkResult<T>()
     data class Error(val exception: HttpError) : NetworkResult<Nothing>()
-    object Loading : NetworkResult<Nothing>()
 
     inline fun onSuccess(action: (T) -> Unit): NetworkResult<T> {
         if (this is Success) action(data)
@@ -31,7 +30,6 @@ sealed class NetworkResult<out T : Any> {
         return when (this) {
             is Success<*> -> "Success[data=$data]"
             is Error -> "Error[exception=$exception]"
-            Loading -> "Loading"
         }
     }
 }
