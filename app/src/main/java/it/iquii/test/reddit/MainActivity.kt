@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import it.iquii.test.reddit.databinding.ActivityMainBinding
+import it.iquii.test.reddit.library.android.entity.hideKeyboard
 import it.iquii.test.reddit.photogrid.OnFilterListener
 import it.iquii.test.reddit.photogrid.PhotoGridFragment
 import kotlinx.coroutines.CoroutineScope
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.searchText.afterTextChanges().debounce(TIMEOUT_FOR_REQUEST).onEach {
-
+            hideKeyboard(binding.searchText)
             val filter = binding.searchText.text
 
             if(filter!!.isNotBlank()) {

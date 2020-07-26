@@ -16,17 +16,39 @@ class PhotoGridViewModel @ViewModelInject constructor(
     private val usecase: PhotoListUsecase
 ) : ViewModel() {
 
-    val _photos = MutableLiveData<Resource<List<ImagesForUi>>>()
+    private val _photos = MutableLiveData<Resource<List<ImagesForUi>>>()
 
     val photos: LiveData<Resource<List<ImagesForUi>>>
         get() = _photos
 
-    fun fetcDataFor(keyword: String) {
+    private val _showProgress = MutableLiveData<Boolean>(false)
+
+    val showProgress: LiveData<Boolean>
+        get() = _showProgress
+
+    fun fetchDataFor(keyword: String) {
         viewModelScope.launch {
-            _photos.postValue(Resource.loading())
+            _showProgress.postValue(true)
             val retrievePhotosFor = withContext(Dispatchers.IO) { usecase.retrievePhotosFor(keyword) }
             _photos.postValue(retrievePhotosFor)
+            _showProgress.postValue(false)
         }
     }
+
+    fun fetchPaginatedDataFor(keyword: String) {
+        viewModelScope.launch {
+            _showProgress.postValue(true)
+            val retrievePhotosFor = withContext(Dispatchers.IO) { usecase.retrievePaginatedPhotosFor(keyword) }
+            //This is a trick. It's seems that when the data are loaded inside the RecyclerView, it triggers an OnScrolled event even if none is
+            // actually done. This is to avoid to chain call endlessly
+            if(retrievePhotosFor.data?.size != 0) {
+                _photos.postValue(retrievePhotosFor)
+                _showProgress.postValue(false)
+            } else {
+                _showProgress.postValue(false)
+            }
+        }
+    }
+
 
 }

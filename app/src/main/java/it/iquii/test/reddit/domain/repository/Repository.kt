@@ -12,6 +12,7 @@ interface Repository {
 
     suspend fun fetchImagesFor(keyword: String): Resource<List<SimpleImages?>>
 
+    suspend fun fetchPaginatedImagesFor(keyword: String): Resource<List<SimpleImages?>>
 }
 
 /**
@@ -34,7 +35,20 @@ class RepositoryImpl @Inject constructor(
             is NetworkResult.Error -> {
                 Resource.error(retrieveImageFor.exception.throwable.message!!)
             }
-            else -> Resource.loading()
+        }
+    }
+
+    /**
+     * */
+    override suspend fun fetchPaginatedImagesFor(keyword: String): Resource<List<SimpleImages?>> {
+
+        return when (val retrieveImageFor = remoteDataStore.retrievePaginatedImageFor(keyword)) {
+            is NetworkResult.Success -> {
+                Resource.success(retrieveImageFor.data)
+            }
+            is NetworkResult.Error -> {
+                Resource.error(retrieveImageFor.exception.throwable.message!!)
+            }
         }
     }
 

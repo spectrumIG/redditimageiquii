@@ -13,19 +13,36 @@ class PhotoListUsecase @Inject constructor(private val repository: Repository) :
     suspend fun retrievePhotosFor(keyword: String): Resource<List<ImagesForUi>> {
 
         val fetchImagesFor = repository.fetchImagesFor(keyword)
-        when (fetchImagesFor.status) {
+        return when (fetchImagesFor.status) {
             Resource.Status.SUCCESS -> {
                 val list = fetchImagesFor.data!!.map { simpleImage: SimpleImages? ->
                     FromSimpleToUiImagesMapper().mapFrom(simpleImage!!)
                 }
-                return Resource.success(list)
+                Resource.success(list)
 
             }
             Resource.Status.ERROR -> {
-                return Resource.error(fetchImagesFor.message!!)
+                Resource.error(fetchImagesFor.message!!)
             }
-            Resource.Status.LOADING -> {
-                return Resource.loading()
+
+        }
+
+    }
+
+    suspend fun retrievePaginatedPhotosFor(keyword: String): Resource<List<ImagesForUi>> {
+
+        val fetchImagesFor = repository.fetchPaginatedImagesFor(keyword)
+
+        return when (fetchImagesFor.status) {
+            Resource.Status.SUCCESS -> {
+                val list = fetchImagesFor.data!!.map { simpleImage: SimpleImages? ->
+                    FromSimpleToUiImagesMapper().mapFrom(simpleImage!!)
+                }
+                Resource.success(list)
+
+            }
+            Resource.Status.ERROR -> {
+                Resource.error(fetchImagesFor.message!!)
             }
 
         }

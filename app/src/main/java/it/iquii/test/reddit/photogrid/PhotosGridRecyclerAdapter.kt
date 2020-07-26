@@ -11,7 +11,6 @@ import it.iquii.test.reddit.R
 import it.iquii.test.reddit.databinding.PhotosItemBinding
 import it.iquii.test.reddit.domain.entity.local.ImagesForUi
 import it.iquii.test.reddit.library.android.entity.PhotosMetaDataHolder
-import java.util.*
 
 class PhotosGridRecyclerAdapter : RecyclerView.Adapter<PhotosGridRecyclerAdapter.GridViewHolder>() {
 
@@ -27,16 +26,24 @@ class PhotosGridRecyclerAdapter : RecyclerView.Adapter<PhotosGridRecyclerAdapter
     override fun onBindViewHolder(holder: GridViewHolder, position: Int) = holder.bind(data[position],position,metaData)
 
     fun setData(data: List<ImagesForUi>) {
-        this.data = data
+        (this.data as ArrayList).addAll(data)
         notifyDataSetChanged()
-        metaData = this.data.map {element ->
-            PhotosMetaDataHolder(uiIndex = 0,
+        metaData = this.data.map { element ->
+            PhotosMetaDataHolder(
+                uiIndex = 0,
                 id = element.id!!,
                 url = element.url,
                 author = element.author!!,
-                description = element.title)
+                description = element.title
+            )
         }
 
+    }
+
+
+    fun clearData() {
+        (this.data as ArrayList).clear()
+        notifyDataSetChanged()
     }
 
     class GridViewHolder(private val binding: PhotosItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -46,7 +53,7 @@ class PhotosGridRecyclerAdapter : RecyclerView.Adapter<PhotosGridRecyclerAdapter
             metaData: List<PhotosMetaDataHolder>
         ) = with(itemView) {
 
-            binding.photoImg.load(item.url){
+            binding.photoImg.load(item.url) {
                 scale(Scale.FILL)
                 crossfade(true)
                 error(R.drawable.ic_download_error)
