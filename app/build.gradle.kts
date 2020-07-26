@@ -36,11 +36,6 @@ android {
             )
         }
     }
-//    compileOptions {
-//        annotationProcessorsOptions {
-//            arguments += ["room.schemaLocation" : "$projectDir/schemas".toString()]
-//        }
-//    }
 
     kotlinOptions {
         jvmTarget = "1.8"
