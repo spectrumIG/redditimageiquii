@@ -16,14 +16,16 @@ import reactivecircus.flowbinding.android.widget.afterTextChanges
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
+    private val TIMEOUT_FOR_REQUEST: Long = 1000
     lateinit var listener: OnFilterListener
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.searchText.afterTextChanges().debounce(1000).onEach {
+        binding.searchText.afterTextChanges().debounce(TIMEOUT_FOR_REQUEST).onEach {
 
             val filter = binding.searchText.text
 
