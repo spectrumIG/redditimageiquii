@@ -18,6 +18,10 @@ interface OnFilterListener {
     fun filterSent(keyword: String)
 }
 
+/**
+ * Fragmment that manages the Grid Recycler and part of pagination
+ *
+ * */
 @AndroidEntryPoint
 class PhotoGridFragment : BaseFragment(R.layout.photo_grid_fragment), OnFilterListener {
     var fragmentBindings: PhotoGridFragmentBinding? = null

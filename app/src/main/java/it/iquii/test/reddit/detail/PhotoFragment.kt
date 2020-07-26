@@ -10,9 +10,15 @@ import coil.api.load
 import dagger.hilt.android.AndroidEntryPoint
 import it.iquii.test.reddit.databinding.FragmentPhotoBinding
 
+/**
+ * Fragment for showing the photo in full screen. To avoid problem and eartning time I choose to use PhotoView image view which is a Chris Bane
+ * library. I decided to use it first because it's extremly lightweighted and second because its author is a very famous Google developer.
+ *
+ * */
+
 @AndroidEntryPoint
 class PhotoFragment : Fragment() {
-    private var binding : FragmentPhotoBinding? = null
+    private var binding: FragmentPhotoBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,9 +31,9 @@ class PhotoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.takeIf {
-                    it.containsKey("photoUrl")
-                }?.apply {
-                    binding?.fullScreenPhoto?.load(this.get("photoUrl").toString())
+            it.containsKey("photoUrl")
+        }?.apply {
+            binding?.fullScreenPhoto?.load(this.get("photoUrl").toString())
 
         }
     }
@@ -48,8 +54,4 @@ class PhotoFragment : Fragment() {
         activity?.window?.decorView?.systemUiVisibility = 0
     }
 
-    override fun onDestroy() {
-//        fragmentBinding = null
-        super.onDestroy()
-    }
-    }
+}

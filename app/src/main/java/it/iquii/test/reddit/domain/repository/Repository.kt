@@ -17,7 +17,7 @@ interface Repository {
 
 /**
  * Main entry point for Single-source-of-truth pattern.
- * TODO: Adds Local data store for caching
+ * Should
  * */
 
 class RepositoryImpl @Inject constructor(

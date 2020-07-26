@@ -15,6 +15,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import reactivecircus.flowbinding.android.widget.afterTextChanges
 
+/**
+ *  Main Activity. I stick with Google Single Activity pattern since with Navigation components I found to be a good solution.
+ *  Unfortunatly, I had some problem with ViewBinding so I had to put a listener here to send the filter string to Fragment
+ * */
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val TIMEOUT_FOR_REQUEST: Long = 1000
