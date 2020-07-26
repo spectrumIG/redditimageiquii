@@ -7,6 +7,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
     id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
     id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN
+//    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
 }
 
 allprojects {
@@ -15,13 +16,26 @@ allprojects {
         google()
         mavenCentral()
         jcenter()
+        maven { setUrl("https://jitpack.io") }
     }
 }
-
+buildscript {
+    repositories{
+        google()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies{
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAV_ARGS}")
+//        classpath("com.android.tools.build:gradle:4.0.1")
+    }
+}
 subprojects {
     apply {
         plugin("io.gitlab.arturbosch.detekt")
         plugin("org.jlleitschuh.gradle.ktlint")
+
     }
 
     ktlint {

@@ -43,10 +43,10 @@ android {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk7"))
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72")
 
-    implementation(SupportLibs.ANDROIDX_APPCOMPAT)
-    implementation(SupportLibs.ANDROIDX_CORE_KTX)
+    implementation(CoreLibs.ANDROIDX_APPCOMPAT)
+    implementation(CoreLibs.ANDROIDX_CORE_KTX)
 
     testImplementation(TestingLib.JUNIT)
 
