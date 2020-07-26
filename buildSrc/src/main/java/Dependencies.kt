@@ -25,12 +25,14 @@ object Versions {
     const val ROOM = "2.2.5"
     const val TIMBER = "4.7.1"
     const val MATERIAL = "1.3.0-alpha01"
-    const val RECYCLER  = "1.1.0"
+    const val RECYCLER = "1.1.0"
     const val RECYCLER_SELECTION = "1.1.0-rc01"
     const val KOTLIN_SERIALIZATION_PLUGIN = "0.20.0"
     const val PERMISSIONS_VER = "2.0.1"
     const val PHOTO_VIEW_VER = "2.3.0"
     const val NAV_ARGS = "2.3.0"
+    const val FLOWBINDING_VERSION = "1.0.0-alpha02"
+
 }
 
 object BuildPluginsVersion {
@@ -58,10 +60,20 @@ object CoreLibs {
     const val EAZY_PERMISSIONS = "com.sagar:dslpermission:${Versions.PERMISSIONS_VER}"
 }
 
+object FlowBindingUI {
+    const val FLOWBINDING_CORE = "io.github.reactivecircus.flowbinding:flowbinding-android:${Versions.FLOWBINDING_VERSION}"
+    const val FLOWBINDING_BASE = "io.github.reactivecircus.flowbinding:flowbinding-core:${Versions.FLOWBINDING_VERSION}"
+    const val FLOWBINDING_RECYCLER = "io.github.reactivecircus.flowbinding:flowbinding-recyclerview:${Versions.FLOWBINDING_VERSION}"
+    const val FLOWBINDING_VIEWPAGER2 = "io.github.reactivecircus.flowbinding:flowbinding-viewpager2:${Versions.FLOWBINDING_VERSION}"
+
+}
+
+
 object JetPackKTX {
     const val VIEWMODELSCOPE = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.VIEWMODELKTX}"
     const val LIFECYCLESCOPE = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIVEDATAKTX}"
     const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIVEDATAKTX}"
+    const val LIFECYCLE_EXTENSION = "androidx.lifecycle:lifecycle-extensions:${Versions.LIVEDATAKTX}"
 }
 
 object Navigation {

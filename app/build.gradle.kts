@@ -84,10 +84,12 @@ dependencies {
     implementation(JetPackKTX.LIVEDATA)
     implementation(JetPackKTX.LIFECYCLESCOPE)
     implementation(JetPackKTX.VIEWMODELSCOPE)
+    implementation(JetPackKTX.LIFECYCLE_EXTENSION)
 
     implementation(Navigation.NAVIGATION_COMP)
     implementation(Navigation.NAVIGATION_DYNAMIC_FEATURE)
     implementation(Navigation.NAVIGATION_UI)
+    implementation(Navigation.NAVIGATION_DYNAMIC_FEATURE)
 
     implementation(CoreLibs.TIMBER_LIB)
     implementation(CoreLibs.EAZY_PERMISSIONS)
@@ -95,11 +97,15 @@ dependencies {
 
     implementation(RoomLib.ROOM)
     implementation(RoomLib.ROOM_KTX)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation(PhotoView.PHOTO_VIEW)
 //    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation(PhotoView.PHOTO_VIEW)
+
+    implementation(FlowBindingUI.FLOWBINDING_CORE)
+    implementation(FlowBindingUI.FLOWBINDING_BASE)
+    implementation(FlowBindingUI.FLOWBINDING_RECYCLER)
+    implementation(FlowBindingUI.FLOWBINDING_VIEWPAGER2)
+
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 //    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     kapt(DILibs.HILT_DI_COMPILER)
