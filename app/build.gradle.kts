@@ -1,12 +1,12 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("kotlin-android-extensions")
     kotlin("kapt")
     kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
     id("kotlin-android")
     id("dagger.hilt.android.plugin")
-    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -54,8 +54,6 @@ android {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.21")
 
-    implementation(project(":library-android"))
-    implementation(project(":library-kotlin"))
 
     implementation(CoreLibs.ANDROIDX_APPCOMPAT)
     implementation(CoreLibs.ANDROIDX_CONSTRAINT_LAYOUT)
@@ -66,6 +64,7 @@ dependencies {
     implementation(CoreLibs.MATERIAL_UI_LIB)
     implementation(CoreLibs.RECYCLER_VIEW)
     implementation(CoreLibs.RECYCLER_VIEW_SELECTION)
+    implementation(CoreLibs.ANDROID_SWIPE_REFRESH)
 
     implementation(DILibs.HILT_DI)
     implementation(DILibs.HILT_VIEWMODEL)
@@ -92,8 +91,6 @@ dependencies {
 
     implementation(RoomLib.ROOM)
     implementation(RoomLib.ROOM_KTX)
-//    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation(PhotoView.PHOTO_VIEW)
 
     implementation(FlowBindingUI.FLOWBINDING_CORE)
     implementation(FlowBindingUI.FLOWBINDING_BASE)
