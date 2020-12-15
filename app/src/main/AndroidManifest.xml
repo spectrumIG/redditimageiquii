@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="it.iquii.test.reddit">
-<uses-permission android:name="android.permission.INTERNET" />
+    package="it.subito.test.punkapi"
+    >
+
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="false"
         android:name=".IquiiTestApplication"
@@ -11,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup"
+        >
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"> <!-- Unfortunately I have not time to deal with landscape and Configuration changes -->
             <intent-filter>

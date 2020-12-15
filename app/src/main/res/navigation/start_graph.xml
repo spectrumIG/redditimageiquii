@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/photoGridFragment"
-        android:name="it.iquii.test.reddit.photogrid.PhotoGridFragment"
+        android:name="it.subito.test.punkapi.photogrid.PhotoGridFragment"
         android:label="photo_grid_fragment"
         tools:layout="@layout/photo_grid_fragment" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailSwipeFragment"
-        android:name="it.iquii.test.reddit.detail.DetailSwipeFragment"
+        android:name="it.subito.test.punkapi.detail.DetailSwipeFragment"
         android:label="detail_swipe_fragment"
         tools:layout="@layout/detail_swipe_fragment" >
         <argument

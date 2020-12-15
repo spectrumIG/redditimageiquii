@@ -7,7 +7,6 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version BuildPluginsVersion.DETEKT
     id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
     id("com.github.ben-manes.versions") version BuildPluginsVersion.VERSIONS_PLUGIN
-//    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
 }
 
 allprojects {
@@ -28,7 +27,7 @@ buildscript {
     dependencies{
         classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAV_ARGS}")
-//        classpath("com.android.tools.build:gradle:4.0.1")
+        classpath("com.android.tools.build:gradle:4.1.1")
     }
 }
 subprojects {

@@ -17,7 +17,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = ("test-iquii-reddit")
+rootProject.name = ("subito-punkapi-test")
 
 include(
     "app",

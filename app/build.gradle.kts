@@ -3,9 +3,9 @@ plugins {
     kotlin("android")
     id("kotlin-android-extensions")
     kotlin("kapt")
+    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
     id("kotlin-android")
     id("dagger.hilt.android.plugin")
-    kotlin("plugin.serialization") version BuildPluginsVersion.SERIALIZATION
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -52,7 +52,7 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.21")
 
     implementation(project(":library-android"))
     implementation(project(":library-kotlin"))

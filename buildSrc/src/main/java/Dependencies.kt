@@ -1,7 +1,7 @@
 object Sdk {
-    const val MIN_SDK_VERSION = 21
-    const val TARGET_SDK_VERSION = 29
-    const val COMPILE_SDK_VERSION = 29
+    const val MIN_SDK_VERSION = 22
+    const val TARGET_SDK_VERSION = 30
+    const val COMPILE_SDK_VERSION = 30
 }
 
 object Versions {
@@ -13,10 +13,10 @@ object Versions {
     const val ESPRESSO_CORE = "3.2.0"
     const val JUNIT = "4.13"
     const val KTLINT = "0.37.2"
-    const val HILT = "2.28-alpha"
-    const val HILT_VIEWMODEL ="1.0.0-alpha01"
     const val RETROFIT = "2.9.0"
     const val RETROFIT_SERIAL_ADAPTER = "0.5.0"
+    const val HILT = "2.28-alpha"
+    const val HILT_VIEWMODEL = "1.0.0-alpha01"
     const val OKHTTP = "4.8.0"
     const val COIL = "0.11.0"
     const val LIVEDATAKTX = "2.2.0"
@@ -36,12 +36,12 @@ object Versions {
 }
 
 object BuildPluginsVersion {
-    const val AGP = "4.0.1"
+    const val AGP = "4.1.1"
     const val DETEKT = "1.9.1"
-    const val KOTLIN = "1.3.72"
+    const val KOTLIN = "1.4.20"
     const val KTLINT = "9.2.1"
     const val VERSIONS_PLUGIN = "0.28.0"
-    const val SERIALIZATION = "1.3.70"
+    const val SERIALIZATION = KOTLIN
 
 }
 

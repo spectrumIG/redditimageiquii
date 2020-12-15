@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="it.iquii.test.reddit.library.android" />
+<manifest package="it.subito.test.punkapi.library.android" />
