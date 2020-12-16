@@ -1,102 +1,28 @@
 package it.subito.test.punkapi.domain.repository.network
 
 import it.subito.test.punkapi.di.RemoteDataStore
-import it.subito.test.punkapi.domain.entity.local.SimpleImages
-import it.subito.test.punkapi.domain.entity.remote.RedditImagesDTO
+import it.subito.test.punkapi.domain.entity.local.FromDtoToSimpleBeerMapper
+import it.subito.test.punkapi.domain.entity.local.SimpleBeer
 import it.subito.test.punkapi.domain.repository.DataStore
-import it.subito.test.punkapi.library.android.entity.NetworkResult
-import it.subito.test.punkapi.library.android.entity.isValidUrl
-import retrofit2.Response
+import it.subito.test.punkapi.library.android.entity.Result
 import javax.inject.Inject
 
 @RemoteDataStore
 class RemoteStore @Inject constructor(private val restApi: RestApi): DataStore {
 
-    private var after: String = ""
-    private var count: String = ""
-
-    suspend fun retrieveImageFor(keyword: String): NetworkResult<List<SimpleImages>> {
-        val response = restApi.getImagesFor(keyword)
+    suspend fun retrieveImageFor(page: Int?, brewedBefore: String?, brewedAfter: String?): Result<List<SimpleBeer>> {
+        val response = restApi.getAllBeersWithPagination(brewedBefore, brewedAfter, page)
         return when {
             response.isSuccessful -> {
-                val simpleImagesList = mutableListOf<SimpleImages>()
+                val simpleBeeList = mutableListOf<SimpleBeer>()
 
-
-                val externalData = response.body()?.externalData
-
-                if(!externalData?.after.isNullOrBlank()) {
-                    after = externalData?.after!!
-
+                response.body()?.forEach {
+                    simpleBeeList.add(FromDtoToSimpleBeerMapper().mapFrom(it))
                 }
-
-                externalData?.children?.forEach { children ->
-
-                    if(children?.innerData?.url!!.isValidUrl()) {
-                        simpleImagesList.add(
-                            SimpleImages(
-                                id = children.innerData.id, url = children.innerData.url, title =
-                                children.innerData.title!!, author = children.innerData.author!!
-                            )
-                        )
-                    } else if(children.innerData.thumbnail!!.isValidUrl()) {
-                        simpleImagesList.add(
-                            SimpleImages(
-                                id = children.innerData.id, url = children.innerData.thumbnail, title =
-                                children.innerData.title!!, author = children.innerData.author!!
-                            )
-                        )
-                    }
-                }!!
-                count = simpleImagesList.size.toString()
-                NetworkResult.Success(simpleImagesList)
+                return Result.Success(simpleBeeList)
             }
-            else -> {
-                return NetworkResult.Error(NetworkResult.HttpError(Exception(response.message()), response.code()))
-            }
-        }
-    }
 
-    suspend fun retrievePaginatedImageFor(keyword: String): NetworkResult<List<SimpleImages>> {
-        val response: Response<RedditImagesDTO> = if(after.isNotBlank() && count.isNotBlank()) {
-
-            restApi.getNextImagesFor(keyword, after, count)
-        } else {
-            return NetworkResult.Success(emptyList())
-        }
-
-        return when {
-            response.isSuccessful -> {
-                val simpleImagesList = mutableListOf<SimpleImages>()
-                val externalData = response.body()?.externalData
-
-                if(!externalData?.after.isNullOrBlank()) {
-                    after = externalData?.after!!
-                }
-
-                externalData?.children?.forEach { children ->
-
-                    if(children?.innerData?.url!!.isValidUrl()) {
-                        simpleImagesList.add(
-                            SimpleImages(
-                                id = children.innerData.id, url = children.innerData.url, title =
-                                children.innerData.title!!, author = children.innerData.author!!
-                            )
-                        )
-                    } else if(children.innerData.thumbnail!!.isValidUrl()) {
-                        simpleImagesList.add(
-                            SimpleImages(
-                                id = children.innerData.id, url = children.innerData.thumbnail, title =
-                                children.innerData.title!!, author = children.innerData.author!!
-                            )
-                        )
-                    }
-                }!!
-                count = simpleImagesList.size.toString()
-                NetworkResult.Success(simpleImagesList)
-            }
-            else -> {
-                return NetworkResult.Error(NetworkResult.HttpError(Exception(response.message()), response.code()))
-            }
+            else -> Result.Error((response as Result.Error).exception)
         }
     }
 

@@ -54,6 +54,8 @@ android {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.4.21")
 
+    implementation(project(":library-android"))
+    implementation(project(":library-kotlin"))
 
     implementation(CoreLibs.ANDROIDX_APPCOMPAT)
     implementation(CoreLibs.ANDROIDX_CONSTRAINT_LAYOUT)
@@ -79,6 +81,7 @@ dependencies {
     implementation(JetPackKTX.LIFECYCLESCOPE)
     implementation(JetPackKTX.VIEWMODELSCOPE)
     implementation(JetPackKTX.LIFECYCLE_EXTENSION)
+    implementation(JetPackKTX.FRAGMENT_KTX)
 
     implementation(Navigation.NAVIGATION_COMP)
     implementation(Navigation.NAVIGATION_DYNAMIC_FEATURE)

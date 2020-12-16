@@ -3,27 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/start_graph.xml"
-    app:startDestination="@id/photoGridFragment">
+    app:startDestination="@id/beersListFragment">
 
     <fragment
-        android:id="@+id/photoGridFragment"
-        android:name="it.subito.test.punkapi.photogrid.PhotoGridFragment"
-        android:label="photo_grid_fragment"
-        tools:layout="@layout/photo_grid_fragment" >
-        <action
-            android:id="@+id/toDetailSwipeFragment"
-            app:destination="@id/detailSwipeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailSwipeFragment"
-        android:name="it.subito.test.punkapi.detail.DetailSwipeFragment"
-        android:label="detail_swipe_fragment"
-        tools:layout="@layout/detail_swipe_fragment" >
-        <argument
-            android:name="index"
-            app:argType="integer" />
-        <argument
-            android:name="photosArray"
-            app:argType="it.iquii.test.reddit.library.android.entity.PhotosMetaDataHolder[]" />
-    </fragment>
+        android:id="@+id/beersListFragment"
+        android:name="it.subito.test.punkapi.beerslist.BeersListFragment"
+        android:label="beers_list_fragment"
+        tools:layout="@layout/beers_list_fragment" />
 </navigation>

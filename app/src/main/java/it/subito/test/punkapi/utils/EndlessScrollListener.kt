@@ -1,14 +1,17 @@
 package it.subito.test.punkapi.utils
 
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+
 /**
- * Utility class for pagination and scrolling of RecyclerView.
+ * Utility class for pagination and scrolling of RecyclerView in very simple case. It's needed only in case of very simple project, P.O.C. or
+ * something like that. It's much faster than putting Paging in place especially for very limited API calls.
+ *
  * Taken from here: https://gist.githubusercontent.com/nesquena/d09dc68ff07e845cc622/raw/e2429b173f75afb408b420ad4088fed68240334c/EndlessRecyclerViewScrollListener.java
  * */
 
-abstract class EndlessRecyclerViewScrollListener constructor(private val mLayoutManager: GridLayoutManager) : RecyclerView.OnScrollListener() {
+abstract class EndlessRecyclerViewScrollListener(private val layoutManager: RecyclerView.LayoutManager?) : RecyclerView.OnScrollListener() {
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private var visibleThreshold = 5
@@ -25,8 +28,16 @@ abstract class EndlessRecyclerViewScrollListener constructor(private val mLayout
     // Sets the starting page index
     private val startingPageIndex = 0
 
-    init {
-        visibleThreshold *= mLayoutManager.spanCount
+    fun getLastVisibleItem(lastVisibleItemPositions: IntArray): Int {
+        var maxSize = 0
+        for (i in lastVisibleItemPositions.indices) {
+            if(i == 0) {
+                maxSize = lastVisibleItemPositions[i]
+            } else if(lastVisibleItemPositions[i] > maxSize) {
+                maxSize = lastVisibleItemPositions[i]
+            }
+        }
+        return maxSize
     }
 
     // This happens many times a second during a scroll, so be wary of the code you place here.
@@ -34,8 +45,8 @@ abstract class EndlessRecyclerViewScrollListener constructor(private val mLayout
     // but first we check if we are waiting for the previous load to finish.
     override fun onScrolled(view: RecyclerView, dx: Int, dy: Int) {
         var lastVisibleItemPosition = 0
-        val totalItemCount: Int = mLayoutManager.itemCount
-        lastVisibleItemPosition = mLayoutManager.findLastVisibleItemPosition()
+        val totalItemCount = layoutManager!!.itemCount
+        lastVisibleItemPosition = (layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
 
         // If the total item count is zero and the previous isn't, assume the
         // list is invalidated and should be reset back to initial state

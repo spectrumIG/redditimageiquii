@@ -23,7 +23,6 @@ object Versions {
     const val VIEWMODELKTX = "2.2.0"
     const val NAVIGATION = "2.3.0"
     const val ROOM = "2.2.5"
-    const val DAGGER = "2.30.1"
     const val TIMBER = "4.7.1"
     const val MATERIAL = "1.3.0-alpha04"
     const val RECYCLER = "1.1.0"
@@ -33,7 +32,8 @@ object Versions {
     const val FLOWBINDING_VERSION = "1.0.0-alpha02"
     const val JSON_SERIALIZATION = "1.0.1"
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
-
+    const val FRAGMENT_KTX: String = "1.2.5"
+    const val PAGIN_VERSION: String = "3.0.0-alpha10"
 }
 
 object BuildPluginsVersion {
@@ -60,6 +60,7 @@ object CoreLibs {
     const val RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.RECYCLER}"
     const val RECYCLER_VIEW_SELECTION = "androidx.recyclerview:recyclerview-selection:${Versions.RECYCLER_SELECTION}"
     const val EAZY_PERMISSIONS = "com.sagar:dslpermission:${Versions.PERMISSIONS_VER}"
+    const val PAGING_LIB = "androidx.paging:paging-runtime:${Versions.PAGIN_VERSION}}"
 }
 
 object FlowBindingUI {
@@ -76,6 +77,7 @@ object JetPackKTX {
     const val LIFECYCLESCOPE = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIVEDATAKTX}"
     const val LIVEDATA = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIVEDATAKTX}"
     const val LIFECYCLE_EXTENSION = "androidx.lifecycle:lifecycle-extensions:${Versions.LIVEDATAKTX}"
+    const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_KTX}"
 }
 
 object Navigation {

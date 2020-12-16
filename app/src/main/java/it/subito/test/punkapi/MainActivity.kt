@@ -3,8 +3,8 @@ package it.subito.test.punkapi
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
+import it.subito.test.punkapi.beerslist.OnFilterListener
 import it.subito.test.punkapi.databinding.ActivityMainBinding
-import it.subito.test.punkapi.photogrid.OnFilterListener
 
 /**
  *  Main Activity. I stick with Google Single Activity pattern since with Navigation components I found to be a good solution.

@@ -1,16 +1,17 @@
 package it.subito.test.punkapi.di
 
+import android.content.Context
+import coil.ImageLoader
+import coil.util.DebugLogger
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import it.subito.test.punkapi.BuildConfig
 import it.subito.test.punkapi.domain.repository.network.RestApi
-import kotlinx.serialization.UnstableDefault
-import kotlinx.serialization.UpdateMode
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -22,7 +23,7 @@ import javax.inject.Singleton
 @Module
 object CoreModule {
     object BaseUrl {
-        private const val BASE_URL = "https://api.punkapi.com/v2"
+        private const val BASE_URL = "https://api.punkapi.com/v2/"
 
         fun getUrl(): String {
             return BASE_URL
@@ -32,33 +33,27 @@ object CoreModule {
     @Singleton
     @Provides
     fun provideRetrofit(json: Json, okHttpClient: OkHttpClient): Retrofit {
-        val contentType = "application/json".toMediaType()
+        val contentType = "application/json"
         return Retrofit.Builder()
-            .addConverterFactory(json.asConverterFactory(contentType))
+            .addConverterFactory(json.asConverterFactory(contentType.toMediaType()))
             .baseUrl(BaseUrl.getUrl())
             .client(okHttpClient)
             .build()
     }
 
-    @UnstableDefault
     @Singleton
     @Provides
     fun provideJsonConfiguration(): Json {
-        return Json(
-            JsonConfiguration(
-                encodeDefaults = false,
-                ignoreUnknownKeys = true,
-                isLenient = true,
-                serializeSpecialFloatingPointValues = true,
-                allowStructuredMapKeys = false,
-                prettyPrint = true,
-                unquotedPrint = false,
-                indent = "",
-                useArrayPolymorphism = false,
-                classDiscriminator = "",
-                updateMode = UpdateMode.OVERWRITE
-            )
-        )
+        return Json {
+            encodeDefaults = false
+            ignoreUnknownKeys = true
+            isLenient = false
+            allowStructuredMapKeys = false
+            prettyPrint = true
+            useArrayPolymorphism = false
+            classDiscriminator = ""
+
+        }
     }
 
     @Singleton
@@ -94,4 +89,12 @@ object CoreModule {
         return interceptors
     }
 
+    @Provides
+    fun provideCoilImageLoader(@ApplicationContext context: Context): ImageLoader {
+        return if(BuildConfig.DEBUG) {
+            ImageLoader.Builder(context).logger(DebugLogger()).build()
+        } else {
+            ImageLoader.Builder(context).build()
+        }
+    }
 }

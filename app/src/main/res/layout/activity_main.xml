@@ -1,7 +1,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -20,25 +20,79 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/primaryDarkColor"
             app:layout_scrollFlags="scroll|enterAlways"
-            ></androidx.appcompat.widget.Toolbar>
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <TextView
+        android:id="@+id/brewed_before_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Birrificata prima del: (mm/aaaa)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBar"
+        app:layout_constraintBottom_toBottomOf="@+id/search_brewed_before"
+
+        />
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/search_text_input"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:layout_width="200dp"
+        android:id="@+id/search_brewed_before"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@android:color/black"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/brewed_before_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/appBar"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/brewed_before"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="filtro ricerca"
+            android:textColor="@android:color/black"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="95dp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:id="@+id/brewed_after_lbl"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Birrificata dopo il: (mm/aaaa)"
+        app:layout_constraintEnd_toEndOf="@+id/brewed_before_lbl"
+        app:layout_constraintStart_toStartOf="@+id/brewed_before_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/brewed_before_lbl"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/search_brewed_after"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/search_brewed_before"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/search_brewed_before"
+        app:layout_constraintTop_toTopOf="@+id/brewed_after_lbl"
         >
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/search_text"
+            android:id="@+id/brewed_after"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="filtro ricerca"
@@ -49,6 +103,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -58,7 +113,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_brewed_after"
         app:navGraph="@navigation/start_graph"
+        />
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="nav_host_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_brewed_after"
         />
 
 

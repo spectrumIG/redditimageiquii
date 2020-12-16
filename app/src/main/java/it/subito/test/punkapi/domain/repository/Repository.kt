@@ -1,18 +1,17 @@
 package it.subito.test.punkapi.domain.repository
 
 import it.subito.test.punkapi.di.RemoteDataStore
-import it.subito.test.punkapi.domain.entity.local.SimpleImages
+import it.subito.test.punkapi.domain.entity.local.SimpleBeer
 import it.subito.test.punkapi.domain.repository.network.RemoteStore
-import it.subito.test.punkapi.library.android.entity.NetworkResult
-import it.subito.test.punkapi.library.android.entity.Resource
+import it.subito.test.punkapi.library.android.entity.Result
 import javax.inject.Inject
 
 
 interface Repository {
 
-    suspend fun fetchImagesFor(keyword: String): Resource<List<SimpleImages?>>
+    suspend fun fetchAllBeerPaginated(page: Int): Result<List<SimpleBeer?>>
 
-    suspend fun fetchPaginatedImagesFor(keyword: String): Resource<List<SimpleImages?>>
+    suspend fun fetchPaginatedBeersForDate(page: Int, brewedBefore: String, brewedAfter: String): Result<List<SimpleBeer?>>
 }
 
 /**
@@ -27,30 +26,16 @@ class RepositoryImpl @Inject constructor(
 
     /**
      * */
-    override suspend fun fetchImagesFor(keyword: String): Resource<List<SimpleImages?>> {
+    override suspend fun fetchAllBeerPaginated(page: Int): Result<List<SimpleBeer?>> {
 
-        return when (val retrieveImageFor = remoteDataStore.retrieveImageFor(keyword)) {
-            is NetworkResult.Success -> {
-                Resource.success(retrieveImageFor.data)
-            }
-            is NetworkResult.Error -> {
-                Resource.error(retrieveImageFor.exception.throwable.message!!)
-            }
-        }
+        return remoteDataStore.retrieveImageFor(page = page, null, null)
     }
 
     /**
      * */
-    override suspend fun fetchPaginatedImagesFor(keyword: String): Resource<List<SimpleImages?>> {
+    override suspend fun fetchPaginatedBeersForDate(page: Int, brewedBefore: String, brewedAfter: String): Result<List<SimpleBeer?>> {
 
-        return when (val retrieveImageFor = remoteDataStore.retrievePaginatedImageFor(keyword)) {
-            is NetworkResult.Success -> {
-                Resource.success(retrieveImageFor.data)
-            }
-            is NetworkResult.Error -> {
-                Resource.error(retrieveImageFor.exception.throwable.message!!)
-            }
-        }
+        return remoteDataStore.retrieveImageFor(page = page, brewedBefore = brewedBefore, brewedAfter = brewedAfter)
     }
 
 }

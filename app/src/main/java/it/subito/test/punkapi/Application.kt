@@ -11,7 +11,7 @@ import okhttp3.OkHttpClient
 import timber.log.Timber
 
 @HiltAndroidApp
-class IquiiTestApplication : Application() {
+class PunkApiTestApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
