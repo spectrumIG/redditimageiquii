@@ -1,6 +1,5 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,7 +32,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
-        android:text="Birrificata prima del: (mm/aaaa)"
+        android:text="Birrificata prima del: (mm-aaaa)"
         app:layout_constraintBottom_toBottomOf="@+id/search_brewed_before"
         app:layout_constraintStart_toStartOf="parent"
 
@@ -51,6 +50,7 @@
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/brewed_before_lbl"
         app:layout_constraintTop_toBottomOf="@+id/appBar"
@@ -59,13 +59,12 @@
             android:id="@+id/brewed_before"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="mm/aaaa"
-            android:textAppearance="@style/TextAppearance.MyTheme.Subtitle1"
+            android:hint="mm-aaaa"
+            android:textAppearance="@style/TextAppearance.MyTheme.Headline6"
 
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="95dp"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <TextView
@@ -74,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center_horizontal"
-        android:text="Birrificata dopo il: (mm/aaaa)"
+        android:text="Birrificata dopo il: (mm-aaaa)"
         app:layout_constraintEnd_toEndOf="@+id/brewed_before_lbl"
         app:layout_constraintStart_toStartOf="@+id/brewed_before_lbl"
         app:layout_constraintTop_toBottomOf="@+id/brewed_before_lbl"
@@ -89,6 +88,7 @@
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="@+id/brewed_after_lbl"
         app:layout_constraintEnd_toEndOf="@+id/search_brewed_before"
         app:layout_constraintHorizontal_bias="1.0"
@@ -99,12 +99,10 @@
             android:id="@+id/brewed_after"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="mm/aaaa"
-            android:textAppearance="@style/TextAppearance.MyTheme.Subtitle1"
+            android:hint="mm-aaaa"
+            android:textAppearance="@style/TextAppearance.MyTheme.Headline6"
 
             android:textColor="@android:color/black"
-            tools:layout_editor_absoluteX="90dp"
-            tools:layout_editor_absoluteY="89dp"
             />
     </com.google.android.material.textfield.TextInputLayout>
 

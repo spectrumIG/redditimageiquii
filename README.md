@@ -9,7 +9,7 @@ qualcosa di completo o valido a livello generale.
 
 # Architettura 
 L'architettura che si è tentato di utilizzare è l'architettura consigliata da Google (MVVM + Single-Source-Of-Truth) con aggiunta di UseCase per
- attenersi( o almeno avvicinersi) ad un'idea di Clean Architecture. E' stato omesso per mancanza di tempo l'implementazione di un DB locale dal
+ attenersi (o almeno avvicinarsi) ad un'idea di Clean Architecture. E' stato omesso per mancanza di tempo l'implementazione di un DB locale dal
  quale andare effettivamente a pescare i dati. 
  Si è tentato di implementare data model diversi per layer diversi per lasciare i layer stessi disaccoppiati fra
  loro e favorire un possibile testing. Si è ovviamente utilizzata la Dependency Injection

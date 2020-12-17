@@ -10,7 +10,6 @@ import it.subito.test.punkapi.BaseFragment
 import it.subito.test.punkapi.R
 import it.subito.test.punkapi.databinding.BeersListFragmentBinding
 import it.subito.test.punkapi.library.android.entity.Result
-import it.subito.test.punkapi.utils.EndlessRecyclerViewScrollListener
 
 /**
  * Fragmment that manages the Grid Recycler and part of pagination
@@ -19,7 +18,9 @@ import it.subito.test.punkapi.utils.EndlessRecyclerViewScrollListener
 @AndroidEntryPoint
 class BeersListFragment : BaseFragment(R.layout.beers_list_fragment) {
     var fragmentBindings: BeersListFragmentBinding? = null
+
     private val viewModel: BeersListViewModel by activityViewModels()
+
     private lateinit var recyclerView: RecyclerView
     private var page = 1
 
@@ -36,15 +37,8 @@ class BeersListFragment : BaseFragment(R.layout.beers_list_fragment) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = beersListAdapter
         }
+
         viewModel.fetchBeersPaginatedFor(page)
-
-        recyclerView.addOnScrollListener(object : EndlessRecyclerViewScrollListener(recyclerView.layoutManager) {
-
-            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView?) {
-                viewModel.fetchBeersPaginatedFor(page)
-
-            }
-        })
 
         viewModel.showProgress.observe(viewLifecycleOwner) { show ->
             if(show) {
@@ -52,12 +46,17 @@ class BeersListFragment : BaseFragment(R.layout.beers_list_fragment) {
             } else {
                 fragmentBindings!!.progressBar.visibility = View.GONE
             }
+        }
+
+        viewModel.uiDataForFilter.observe(viewLifecycleOwner) { holder ->
+            recyclerView.addOnScrollListener(BeersEndelessList(recyclerView.layoutManager, viewModel, viewModel.uiDataForFilter.value!!))
+            if(holder.showFiltered) {
+                (recyclerView.adapter as BeersLinearRecyclerAdapter).clearData()
+            }
 
         }
 
         viewModel.beers.observe(viewLifecycleOwner) { resource ->
-
-
             when (resource) {
                 is Result.Success -> {
                     enableList()

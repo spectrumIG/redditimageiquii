@@ -3,6 +3,7 @@ package it.subito.test.punkapi
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isNotEmpty
 import androidx.core.widget.doOnTextChanged
 import dagger.hilt.android.AndroidEntryPoint
 import it.subito.test.punkapi.beerslist.BeersListViewModel
@@ -25,12 +26,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.searchBrewedAfter.editText!!.doOnTextChanged { text, _, _, _ ->
-            binding.searchButton.isEnabled = text!!.isNotEmpty()
+            binding.searchButton.isEnabled = (text!!.isNotEmpty() && binding.searchBrewedBefore.isNotEmpty())
         }
-        binding.searchBrewedBefore.editText!!.doOnTextChanged { text, start, before, count ->
-            binding.searchButton.isEnabled = text!!.isNotEmpty()
+        binding.searchBrewedBefore.editText!!.doOnTextChanged { text, _, _, _ ->
+            binding.searchButton.isEnabled = (text!!.isNotEmpty() && binding.searchBrewedAfter.isNotEmpty())
         }
 
         binding.searchButton.setOnClickListener {
