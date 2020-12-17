@@ -2,7 +2,7 @@ package it.subito.test.punkapi.beerslist
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,10 +12,6 @@ import it.subito.test.punkapi.databinding.BeersListFragmentBinding
 import it.subito.test.punkapi.library.android.entity.Result
 import it.subito.test.punkapi.utils.EndlessRecyclerViewScrollListener
 
-interface OnFilterListener {
-    fun filterSent(keyword: String)
-}
-
 /**
  * Fragmment that manages the Grid Recycler and part of pagination
  *
@@ -23,8 +19,7 @@ interface OnFilterListener {
 @AndroidEntryPoint
 class BeersListFragment : BaseFragment(R.layout.beers_list_fragment) {
     var fragmentBindings: BeersListFragmentBinding? = null
-    private val viewModel: BeersListViewModel by viewModels()
-    private var filter: String = ""
+    private val viewModel: BeersListViewModel by activityViewModels()
     private lateinit var recyclerView: RecyclerView
     private var page = 1
 
@@ -80,13 +75,6 @@ class BeersListFragment : BaseFragment(R.layout.beers_list_fragment) {
             }
         }
     }
-
-
-//    override fun filterSent(keyword: String) {
-//        filter = keyword
-//        (recyclerView.adapter as BeersLinearRecyclerAdapter).clearData()
-//        viewModel.fetchBeersPaginatedFor(filter)
-//    }
 
     private fun enableErrorMessage() {
         fragmentBindings!!.mainBeersRecycler.visibility = View.GONE

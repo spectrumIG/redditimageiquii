@@ -38,7 +38,7 @@ class BeersListViewModel @ViewModelInject constructor(
         }
     }
 
-    fun fetchBeersPaginatedAndWithFilterDate(page: Int, brewedBefore: String, brewedAfter: String) {
+    fun fetchBeersPaginatedAndWithFilterDate(page: Int, brewedBefore: String?, brewedAfter: String?) {
         viewModelScope.launch {
             _showProgress.postValue(true)
 
@@ -48,7 +48,7 @@ class BeersListViewModel @ViewModelInject constructor(
                 is Result.Success -> {
                     if(retrieveBeersFor.data.isNotEmpty()) {
                         _beers.postValue(retrieveBeersFor)
-//                        _showProgress.postValue(false)
+                        _showProgress.postValue(false)
                     }
                 }
                 else -> {

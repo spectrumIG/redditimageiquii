@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.imageLoader
 import coil.load
-import coil.size.Scale
-import coil.transform.CircleCropTransformation
 import it.subito.test.punkapi.R
 import it.subito.test.punkapi.databinding.BeerItemBinding
 import it.subito.test.punkapi.domain.entity.local.BeerForUi
@@ -27,18 +25,8 @@ class BeersLinearRecyclerAdapter :
     fun setData(data: List<BeerForUi>) {
         (this.data as ArrayList).addAll(data)
         notifyDataSetChanged()
-//        metaData = this.data.map { element ->
-//            PhotosMetaDataHolder(
-//                uiIndex = 0,
-//                id = element.id!!,
-//                url = element.url,
-//                author = element.author!!,
-//                description = element.title
-//            )
-//        }
 
     }
-
 
     fun clearData() {
         (this.data as ArrayList).clear()
@@ -52,11 +40,9 @@ class BeersLinearRecyclerAdapter :
             with(itemView) {
 
                 binding.photoImg.load(item.imageUrl, context.imageLoader) {
-                    scale(Scale.FILL)
                     crossfade(true)
                     error(R.drawable.ic_download_error)
                     placeholder(R.drawable.ic_beer_mug_empty_svgrepo_com)
-                    transformations(CircleCropTransformation())
                 }
                 binding.beerName.text = item.name
                 binding.beerTagLine.text = item.tagline

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AppTheme"
         tools:ignore="AllowBackup"
         >
-        <activity android:name=".MainActivity"> <!-- Unfortunately I have not time to deal with landscape and Configuration changes -->
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
