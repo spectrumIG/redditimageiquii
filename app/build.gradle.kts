@@ -49,6 +49,10 @@ android {
         isWarningsAsErrors = true
         isAbortOnError = true
     }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -109,6 +113,11 @@ dependencies {
 
     testImplementation(TestingLib.JUNIT)
     testImplementation(TestingLib.ROOM_TESTING)
+//    testImplementation(TestingLib.ROBOELECTRIC)
+    testImplementation(TestingLib.MOCKITO)
+    testImplementation(TestingLib.MOCKITO_KOTLIN)
+    testImplementation(TestingLib.COROUTINE_HELPER)
+
 
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)

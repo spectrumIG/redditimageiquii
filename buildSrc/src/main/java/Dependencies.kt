@@ -34,6 +34,10 @@ object Versions {
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
     const val FRAGMENT_KTX: String = "1.2.5"
     const val PAGIN_VERSION: String = "3.0.0-alpha10"
+    const val MOCKITO_VERSION: String = "1.10.19"
+    const val COROUTINE_TEST: String = "1.4.2"
+    const val MOCKITO_KOTLIN_VERSION = "2.2.0"
+    const val ROBOLECTRIC = "1.0.0"
 }
 
 object BuildPluginsVersion {
@@ -117,6 +121,12 @@ object RoomLib {
 
 object TestingLib {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
+
+    //    const val ROBOELECTRIC = "'androidx.test:core:${Versions.ROBOLECTRIC}"
+    const val MOCKITO = "org.mockito:mockito-core:${Versions.MOCKITO_VERSION}"
+    const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.MOCKITO_KOTLIN_VERSION}"
+
+    const val COROUTINE_HELPER = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINE_TEST}"
     const val ROOM_TESTING = "androidx.room:room-testing:${Versions.ROOM}"
 }
 object AndroidTestingLib {

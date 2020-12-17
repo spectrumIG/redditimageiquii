@@ -16,13 +16,17 @@ class BeersListUsecase @Inject constructor(private val repository: Repository) :
 
         return when {
             simpleBeers.succeded -> {
-                val returnedList = mutableListOf<BeerForUi>()
+                return try {
+                    val returnedList = mutableListOf<BeerForUi>()
 
-                (simpleBeers as Result.Success).data.forEach {
-                    returnedList.add(FromSimpleToUiBeerMapper().mapFrom(it!!))
+                    (simpleBeers as Result.Success).data.forEach {
+                        returnedList.add(FromSimpleToUiBeerMapper().mapFrom(it!!))
+                    }
+
+                    Result.Success(returnedList)
+                } catch (e: Exception) {
+                    Result.Error(e)
                 }
-
-                return Result.Success(returnedList)
             }
             else -> {
                 Result.Error((simpleBeers as Result.Error).exception)
