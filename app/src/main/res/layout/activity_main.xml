@@ -30,13 +30,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
-        android:text="Birrificata prima del: (mm-aaaa)"
+        android:text="Birrificata prima del:(mm-aaaa)"
         app:layout_constraintBottom_toBottomOf="@+id/search_brewed_before"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/appBar"
+        app:layout_constraintTop_toTopOf="@+id/search_brewed_before"
+        app:layout_constraintVertical_bias="0.060000002"
         />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/search_brewed_before"
@@ -44,6 +44,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textColor="@android:color/black"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -71,12 +72,11 @@
         android:id="@+id/brewed_after_lbl"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:gravity="center_horizontal"
         android:text="Birrificata dopo il: (mm-aaaa)"
         app:layout_constraintEnd_toEndOf="@+id/brewed_before_lbl"
         app:layout_constraintStart_toStartOf="@+id/brewed_before_lbl"
-        app:layout_constraintTop_toBottomOf="@+id/brewed_before_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/search_brewed_before"
         />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/search_brewed_after"
@@ -89,11 +89,10 @@
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
         app:errorEnabled="true"
-        app:layout_constraintBottom_toBottomOf="@+id/brewed_after_lbl"
         app:layout_constraintEnd_toEndOf="@+id/search_brewed_before"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/search_brewed_before"
-        app:layout_constraintTop_toTopOf="@+id/brewed_after_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/search_brewed_before"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/brewed_after"
@@ -109,10 +108,11 @@
 
     <Button
         android:id="@+id/search_button"
-        style="@style/Widget.AppCompat.Button.Borderless"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:enabled="false"
         android:text="Cerca"
         app:layout_constraintEnd_toEndOf="@+id/brewed_after_lbl"
         app:layout_constraintStart_toStartOf="@+id/brewed_after_lbl"

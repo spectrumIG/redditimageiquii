@@ -3,7 +3,6 @@ package it.subito.test.punkapi
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isNotEmpty
 import androidx.core.widget.doOnTextChanged
 import dagger.hilt.android.AndroidEntryPoint
 import it.subito.test.punkapi.beerslist.BeersListViewModel
@@ -27,10 +26,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.searchBrewedAfter.editText!!.doOnTextChanged { text, _, _, _ ->
-            binding.searchButton.isEnabled = (text!!.isNotEmpty() && binding.searchBrewedBefore.isNotEmpty())
+            if(!text!!.matches("(0?[1-9]|1[012])-(19|20)[0-9][0-9]".toRegex())) {
+                binding.searchBrewedAfter.error = "Formato errato (mm-aaaa)"
+            } else {
+                binding.searchBrewedAfter.error = null
+                binding.searchButton.isEnabled = (text.isNotEmpty() && binding.searchBrewedBefore.editText!!.text.isNotEmpty())
+            }
         }
         binding.searchBrewedBefore.editText!!.doOnTextChanged { text, _, _, _ ->
-            binding.searchButton.isEnabled = (text!!.isNotEmpty() && binding.searchBrewedAfter.isNotEmpty())
+            if(!text!!.matches("(0?[1-9]|1[012])-(19|20)[0-9][0-9]".toRegex())) {
+                binding.searchBrewedBefore.error = "Formato errato (mm-aaaa)"
+            } else {
+                binding.searchBrewedBefore.error = null
+                binding.searchButton.isEnabled = (text.isNotEmpty() && binding.searchBrewedAfter.editText!!.text.isNotEmpty())
+            }
         }
 
         binding.searchButton.setOnClickListener {
