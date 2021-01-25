@@ -1,4 +1,17 @@
 # Prova tecnica
+
+## Requisiti
+L’esercizio prevede la realizzazione di una semplice applicazione Android che attraverso le
+Punk API​ permetta di visualizzare la lista delle birre, sfruttando la pagination delle API.
+L’utente deve poter anche cercare le birre birrificate in un determinato intervallo temporale.
+Gli elementi della lista devono contenere almeno l’immagine (se presente), nome e “tagline”.
+Aspetti sui quale porre particolare attenzione:
+ ● Struttura e pulizia del codice
+ ● Non bloccare l’​ orientation​ delle ​ Activity
+ ● Testing automatico
+È possibile utilizzare librerie open source.
+
+## Descrizione
 Il progetto è la realizzazione della prova tecnica e cerca  di attenersi alle specifiche tecniche richieste. 
 Purtroppo per mancanza di tempo ed energie il progetto  verte primariamente sulla parti principali.
 
@@ -6,7 +19,7 @@ La UI e in parte anche a la UX sono puramente degli scheletri di base per dare l
 qualcosa di completo o valido a livello generale.
 
 
-# Architettura 
+## Architettura 
 L'architettura che ho tentato di utilizzare è l'architettura consigliata da Google (MVVM + Single-Source-Of-Truth) con aggiunta di UseCase per
  attenersi (o almeno avvicinarsi) ad un'idea di Clean Architecture. 
  Ho stato omesso per mancanza di tempo l'implementazione di un DB locale con Room dal quale andare effettivamente a pescare i dati. 
