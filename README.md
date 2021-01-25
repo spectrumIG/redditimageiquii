@@ -1,5 +1,4 @@
-# Prova tecnica per Subito.it
-
+# Prova tecnica
 Il progetto è la realizzazione della prova tecnica e cerca  di attenersi alle specifiche tecniche richieste. 
 Purtroppo per mancanza di tempo ed energie il progetto  verte primariamente sulla parti principali.
 
